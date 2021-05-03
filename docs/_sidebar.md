@@ -46,6 +46,7 @@
   - [QC - Dashboard](data/intermediate/QC---dashboard.md)
   - [QC - Kimel Staff](data/intermediate/QC---Kimel-staff.md)
   - [QC - Terminal](data/intermediate/QC---terminal.md)
+  - [Datalad on SciNet](data/intermediate/Datalad-on-SciNet.md)
   - [XNAT](data/advanced/XNAT.md)
   - [Study Setup](data/advanced/Study-Setup.md)
   - [Organization](data/advanced/Data-Organization.md)
