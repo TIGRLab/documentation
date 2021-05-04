@@ -1,7 +1,7 @@
 # Who is this for?
-  - Anyone who will access the data stored in `/archive`
-  - Anyone who will run pipelines that will output data into `/archive`
-  - Anyone who will want to use datasets from `/archive` for private analysis
+  - Anyone who will access the data stored in the `/archive`
+  - Anyone who will run pipelines that will output data for the `/archive`
+  - Anyone who will want to use datasets from the `/archive` for private analysis
 
 This document briefly describes the usage and purpose of [DataLad](https://www.datalad.org/), the system used in Kimel Lab for versioning and tracking both processed and unprocessed research data.
 
@@ -21,8 +21,6 @@ Finally, since you will also often be working with data here in the lab but *wil
 
 # In practice
 
-## Install your first dataset, get your first data
-
 To start using `datalad`, you need to be ready to use `git`. If you’re not already a regular `git` user, now is the time to [start](/technical_skills/beginner/Using-Git). To begin with, we’ll make a `.gitconfig` file. This file stores information regarding your identity (and other options that aren’t relevant here), which `datalad` needs to know about so it can track *who has done what to the data being shared*. If you don’t already have a `.gitconfig` file, running the following commands from the command line will create yours:
 
 ```sh
@@ -31,6 +29,8 @@ git config --global user.email "your@email.com"
 ```
 
 This will create the file in your home directory (‘`~/.gitconfig`’) and add to it the name and e-mail address provided. If you do not have a `.gitconfig`, some `datalad` commands will fail, since they check this information to associate you with the updates you make to datasets.
+
+## Install your first dataset, get your first data
 
 Once we have a `.gitconfig` we can begin to run some `datalad` commands. Change directory to your `/projects` by typing `cd /projects/[yourusername]` now. We provide a `datalad` quarantine module, which you should also load now. We’re going to learn to ‘*install*’ a dataset:
 
@@ -123,7 +123,7 @@ action summary:
 
 The ‘`**`’ pattern (known, incidentally, as a ‘globstar’), tells `datalad` to recursively find everything in every directory below the current working directory, and the regular glob pattern ‘`*`’ after the ‘`T1w`’ tells `datalad` to limit its fetches to files with names beginning with `T1w`. As a general rule, any form of wildcard expansion or pattern matching which is available *from the bash shell* for matching filenames will work with `datalad`, making it extremely convenient and economical to fetch *all and only* the files you want to work with. Having fetched our `T1w`s, our local installation of the dataset still only contains 1002MB of data. Nice!
 
-If the globstar didn’t work, just throw `shopt -s globstar` into your `~/.bashrc` file, and `source /etc/profile`. It’s a useful shell option that might not be set for your shell. You can also just run `shopt -s globstar` to turn it on for this particular shell session, but not future ones. Do this now, as we'll be using globstar to match subsets of files for the rest of his demo.
+If the globstar didn’t work, just throw `shopt -s globstar` into your `~/.bashrc` file, and `source /etc/profile`. It’s a useful shell option that might not be set for your shell. You can also just run `shopt -s globstar` to turn it on for this particular shell session, but not future ones. Do this now, as we'll be using globstar to match recursive subsets of files for the rest of his demo.
 
 ## Working with dataset data
 
@@ -244,7 +244,7 @@ Crucially, datasets in our lab should **not** use `* annex.backend=MD5E` as an a
 
 ``` sh
 datalad create new_dataset
-sed -i 's/MD5/SHA256/' new_dataset/.gitattributes
+sed -i 's/MD5/SHA256/' new_dataset/.gitattributes new_dataset/.git/config
 ```
 
 This can be performed at any time **before any data has been saved with `datalad save`**. Any work you do with a personally maintained dataset will be expected to be in, or upgraded to, the `SHA256E` backend before it is accepted into the archive.
@@ -253,7 +253,7 @@ Finally, if you choose the `text2git` config option pushes text files into a reg
 
 ``` sh
 datalad create -c text2git new_dataset
-sed -i 's/and/or/;s/=0/=1024/;s/MD5/SHA256/' new_dataset/.gitattributes
+sed -i 's/and/or/;s/=0/=1024/;s/MD5/SHA256/' new_dataset/.gitattributes new_dataset/.git/config
 ```
 
 Doing so will ensure that only small text files are placed directly in the repo, ensuring against massive, potentially very data-intensive `datalad install` operations. The combination of `text2git` and `bids` is what is used on the `/archive` datasets, along with the `sed` modifications for specifying the 1kB size of the text files to be allowed and the `SHA256E` backend.
