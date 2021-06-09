@@ -26,6 +26,7 @@
 - Resources
 
   - [fMRI Bootcamp](https://cbmm.mit.edu/fmri-bootcamp)
+  - [Pipeline QC Guide](https://docs.google.com/document/d/1R18XhASnNRNli_w40PU3n1yHLI0JXc-RqYdOT9eI7OQ/edit?usp=sharing)
   - [Compute Cluster](resources/Compute-Clusters.md)
   - [Private Modules](resources/Private-Modules.md)
   - [Laptops](resources/Laptops.md)
