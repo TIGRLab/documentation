@@ -63,12 +63,19 @@ Once you have both accounts and SCC access set up you can access our system remo
 
 1. From here you can work on the SCC or you can ssh into your lab computer with `ssh yourkimelusername@yourmachinename`
 
-NOTE: If you ever need to view files graphically (eg. html files from a QC pipeline's output), you can navigate to your home directory and symlink them there.
+NOTE1: If you ever need to view files graphically (eg. html files from a QC pipeline's output), you can navigate to your home directory and symlink them there.
 Eg.
 
 ```
 cd . #(without being SSH-ed into a kimel lab computer)
 ln -s /KIMEL/tigrlab/scratch/kimel_user/copied_folder .
+```
+
+NOTE2: If you're on a mac you may find that certain keyboard characters (like the '@' symbol) dont work correctly over Citrix. You may be able to fix this with the following two commands. You'll have to restart Citrix after these changes for them to take effect.
+
+```
+cd $HOME/Library/Application\ Support/Citrix\ Receiver
+sed -e 's/KeyboardLayout=(User Profile)/KeyboardLayout=US/' -i SAVE Config 
 ```
 
 Now you will be able to view the files in your home directory on the jupyter hub sidebar. You can now open them in a new browser tab to look at them.
