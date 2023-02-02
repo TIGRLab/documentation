@@ -21,12 +21,14 @@
 
 QSIprep works from BIDS converted datasets. 
 
-For projects that use the ABCD-GE 104 direction DWI sequence (i.e. the TAY cohort study). We find the following post-steps need to be done to prepare the data.
+For projects that use the ABCD-GE 104 direction DWI sequence (i.e. the TAY cohort study, SPIN-R - SPIN30). We find the following post-steps need to be done to prepare the data.
 
 - update IntendedFor - add to dmri-microstructure repo
 - make sure epi scans being used as dwi field maps don't have any non b=0 volumes (also remove .bvec and .bval files)
 
 ## Pre-processing
+
+This is an example of the preprocessing script used for a SPIN30 - which uses the ABCD-GE 104 direction DWI sequence. With reverse phase encoded b-zero fmaps for succestibility distortion correction (SDC).
 
 ```
 #!/bin/bash -l
@@ -81,6 +83,78 @@ singularity run \
   -w /work \
   --notrack
 ```
+
+This is an example script for the single shell 60-direction DWI sequence commonly used at CAMH. (i.e. the SPINS study, part of PACTMD).
+
+```
+#!/bin/bash -l
+
+#SBATCH --partition=high-moby
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=4096
+#SBATCH --time=24:00:00
+#SBATCH --job-name qsiprep
+#SBATCH --output=logs/qsiprep_%j.out
+#SBATCH --error=logs/qsiprep_%j.err
+
+STUDY="COGBDY"
+
+BIDS_DIR=/archive/data/${STUDY}/data/bids
+FS_DIR=/archive/data/${STUDY}/pipelines/bids_apps/freesurfer
+OUT_DIR=/scratch/edickie/${STUDY}_qsiprep/out
+TMP_DIR=/scratch/edickie/${STUDY}_qsiprep/tmp
+WORK_DIR=${TMP_DIR}/work
+FS_LICENSE=${TMP_DIR}/freesurfer_license/license.txt
+
+SING_CONTAINER=/archive/code/containers/QSIPREP/pennbbl_qsiprep_0.16.0RC3-2022-06-03-9c3b9f2e4ac1.simg
+
+#sublist=`sed -n -E "s/sub-(\S*)\>.*/\1/gp" ${BIDS_DIR}/participants.tsv`
+sublist="/scratch/edickie/${STUDY}_qsiprep/code/sublist.txt"
+
+index() {
+   head -n $SLURM_ARRAY_TASK_ID $sublist \
+   | tail -n 1
+}
+
+mkdir -p $OUT_DIR $TMP_DIR $WORK_DIR
+
+singularity run \
+  -H ${TMP_DIR} \
+  -B ${BIDS_DIR}:/bids \
+  -B ${OUT_DIR}:/out \
+  -B ${WORK_DIR}:/work \
+  -B ${FSDIR}:/fsdir \
+  -B ${FS_LICENSE}:/li \
+  ${SING_CONTAINER} \
+  /bids /out participant \
+  --skip-bids-validation \
+  --participant_label `index` \
+  --acquisition_type singleshelldir60b1000 \
+  --n_cpus 4 --omp-nthreads 2 \
+  --freesurfer-input /fsdir \
+  --denoise_method dwidenoise \  # MRTrix
+  --unringing_method mrdegibbs \ # MRTrix
+  --separate_all_dwis \
+  --hmc_model eddy \
+  --use-syn-sdc \
+  --output-resolution 1.7 \ # mandatory
+  --fs-license-file /li \
+  -w /work \
+  --notrack
+```
+
+to submit above bit:
+
+```sh
+STUDY="COGBDY"
+cd /scratch/edickie/${STUDY}_qsiprep/
+
+N_SUBJECTS=$(( $( wc -l /scratch/edickie/${STUDY}_qsiprep/code/sublist.txt | cut -f1 -d' ' ) - 1 ))
+
+sbatch --array=0-${N_SUBJECTS} ./code/run_qsiprep.sh
+```
+
 
 ## Check resolution of input dwi scans
 
