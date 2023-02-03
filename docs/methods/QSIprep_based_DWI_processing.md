@@ -74,11 +74,11 @@ singularity run \
   --participant_label `index` \
   --n_cpus 4 --omp-nthreads 2 \
   --freesurfer-input /out/freesurfer \
-  --denoise_method dwidenoise \  # MRTrix
-  --unringing_method mrdegibbs \ # MRTrix
+  --denoise_method dwidenoise \
+  --unringing_method mrdegibbs \
   --separate_all_dwis \
   --hmc_model eddy \
-  --output-resolution 1.7 \ # mandatory
+  --output-resolution 2.0 \
   --fs-license-file /li \
   -w /work \
   --notrack
