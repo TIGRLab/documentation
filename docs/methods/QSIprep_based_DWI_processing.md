@@ -78,7 +78,7 @@ singularity run \
   --unringing_method mrdegibbs \
   --separate_all_dwis \
   --hmc_model eddy \
-  --output-resolution 2.0 \
+  --output-resolution 1.7 \
   --fs-license-file /li \
   -w /work \
   --notrack
@@ -138,7 +138,7 @@ singularity run \
   --separate_all_dwis \
   --hmc_model eddy \
   --use-syn-sdc \
-  --output-resolution 1.7 \ # mandatory
+  --output-resolution 2.0 \ # mandatory
   --fs-license-file /li \
   -w /work \
   --notrack
