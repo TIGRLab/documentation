@@ -66,4 +66,5 @@
   - [FreeSurfer](methods/freesurfer.md)
   - [FSL-based dMRI Processing](methods/FSL-based-DTI-Processing.md)
   - [DTIPrep-based dMRI Processing](methods/DTIPrep.md)
+  - [QSIprep-based dMRI Processing](methods/QSIprep_based_DWI_processing.md)
   - [fMRI Processing](methods/fMRI-Processing.md)
