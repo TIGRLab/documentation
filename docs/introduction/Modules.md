@@ -14,7 +14,7 @@ There are also other commands available and various options you can set. You can
 
 ## Accessing our SCC modules
 
-Our lab's modules aren't available by default on the SCC. To add them to the `module avail` list them you first need to run `module load /KIMEL/quarantine/modules/quarantine`
+Our lab's modules aren't available by default on the SCC. To add them to the `module avail` list you first need to run `source /KIMEL/tigrlab/quarantine/scc_modules.sh` or `source /KIMEL/tigrlab/quarantine/kimel_modules.sh`. The first command (scc_modules.sh) gives you access to all our of SCC-only modules. These are all guaranteed to work on the SCC, but are probably (not always) more out of date than our lab's modules. The second command (kimel_modules.sh) gives you access to all of the modules that are available on our workstations in the lab. Most of these will work just fine on the SCC, but some may have software dependencies that are missing on the SCC nodes. If there is a module you need that doesnt work on the SCC, or if you need software that doesnt have a module, please let us know and we'll help!
 
 ## Private Modules
 
