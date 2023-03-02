@@ -20,7 +20,6 @@
   - [Introduction to Coding](technical_skills/beginner/Introduction-to-Coding.md)
   - [Tips for Reproducible Research](technical_skills/beginner/Tips-for-reproducible-research.md)
   - [Using Python Virtual Environments](technical_skills/beginner/Using-Python-Virtual-Environments.md)
-  - [Python 2-3 Transition](technical_skills/beginner/Python-2—3-Transition.md)
   - [Writing Python Tests](technical_skills/advanced/Writing-Tests.md)
 
 - Resources
