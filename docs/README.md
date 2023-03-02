@@ -2,6 +2,6 @@
 
 > An awesome project.
 
-> This is the home page. 
+> This is the home page.
 
-*Find out how to modify this documentation site at [Editing the Documentation](/other/Editing-Documentation).*
+*Find out how to modify this documentation site at [Editing the Documentation](/docs/other/Editing-Documentation).*
