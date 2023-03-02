@@ -38,11 +38,12 @@
 
   - [Archiving Emails](offboarding/Archiving-emails.md)
 
-- Data
+- Working with the Archive
 
   - [Data Naming](data/introduction/Data-Naming.md)
   - [Data Documentation](data/introduction/Data-Documentation.md)
   - [Datalad](data/introduction/Datalad.md)
+  - [QC](data/intermediate/QC.md)
   - [QC - Dashboard](data/intermediate/QC---dashboard.md)
   - [QC - Kimel Staff](data/intermediate/QC---Kimel-staff.md)
   - [QC - Terminal](data/intermediate/QC---terminal.md)
