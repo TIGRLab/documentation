@@ -44,6 +44,7 @@
   - [Data Documentation](data/introduction/Data-Documentation.md)
   - [Datalad](data/introduction/Datalad.md)
   - [QC](data/intermediate/QC.md)
+  - [QC - Staff Guide](data/intermediate/QC-staff-guide.md)
   - [QC - Dashboard](data/intermediate/QC---dashboard.md)
   - [QC - Kimel Staff](data/intermediate/QC---Kimel-staff.md)
   - [QC - Terminal](data/intermediate/QC---terminal.md)
