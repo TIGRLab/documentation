@@ -6,11 +6,7 @@ Python virtual environments are super handy. They prevent new packages that you 
 
 ```bash
 # This will build a blank 'python' at $DESTDIR
-virtualenv $DESTDIR
-
-# This will do the same, but will use a specific version of python
-# (in this case the system's installation of python3)
-virtualenv -p python3 $DESTDIR
+python -m venv $DESTDIR
 ```
 
 Note: make sure you know which python is being used to make your environment! If you have a python module loaded your environment may use a different python than you expect. To check which one will be used you can use `python --version` and `which python` to make sure it's the right version and check where the version is installed on the system.
