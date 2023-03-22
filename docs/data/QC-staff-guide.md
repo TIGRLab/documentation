@@ -55,6 +55,80 @@ If the session ID appears in this list select it, click details (on the right), 
 
 One thing to be careful of is that sometimes the scan got stuck there because there are multiple UIDs present in the same zip file. Sometimes this happens with the processed images / 3d saved state processed images. To tell if that happened here check to see if the session ID is in the pre-archive twice with the same upload date. If you click on each they should contain a different list of series (one will have most of the scans and the other just a few processed scans). If this is the case archive the main scan data first and then archive the smaller set of data and dismiss the error about the different UIDs. If you fail to merge in both dm_xnat_upload.py will continue to try to upload the zip file every night due to the missing files.
 
-###TO DO
-- Add overview of how to handle header differences
-- Add overview of how to handle missing scans due to incorrect ExportInfo / dicom2bids.json settings
+### [dm_xnat_extract.py] The scan is on XNAT, but not in the nii and/or bids folder
+Section under construction, nag me about it if you came here looking for help! - Dawn
+
+## Missing REDCap
+#### 1. Make sure the survey exists on the server.
+
+#### 2. Make sure the MRI ID field is correct.
+
+Often a small typo in this field, or the omission of one of the ID subfields, can prevent the REDCap record from being correctly matched to our archive. If you want to be certain that the ID format is correct you can use datman's `scanid.parse` module. This is how all of our nightly scripts and the dashboard read these IDs, so if the ID can be read without raising an exception you can be certain that it is formatted correctly.
+
+```bash
+# First load our code environment and start ipython
+module load lab-code
+ipython
+```
+```python
+# Do these lines in ipython
+import datman.scanid
+ident = datman.scanid.parse("YOUR_ID_HERE") # If this line doesnt raise an error, the ID is well formatted.
+```
+
+#### 3. (Data Entry Trigger only) Rule out temporary network issues.
+
+Studies that use REDCap's data entry trigger feature to import records may occasionally end up with missing records if there happened to be network issues at the time that the survey was completed. To check if this is the case, re-save the record and then refresh the page in the dashboard. If it appears then it was a temporary issue that requires no further intervention.
+
+#### 4. (dm_redcap_scan_completed.py only) Re-run the script manually.
+
+Studies that use the datman script `dm_redcap_scan_completed.py` instead of (or in addition to) the Data Entry Trigger will only pull in records when it runs as part of the nightly pipelines. If the record was entered on REDCap on the same day you're looking for it there may not actually be an issue, and you can run the script manually to pull it down early.
+
+If at least one day has passed, you can likely find error messages in the nightly run log for this script. To help with debugging and get more debug info you may want to manually run the script.
+
+```bash
+module load lab-code
+# For more log messages use --verbose or --debug
+dm_redcap_scan_completed.py STUDYNAME
+```
+
+#### 5. Make sure REDCap configuration for the study is correct.
+**DET only:** Make sure the data entry trigger is enabled and pointing to the correct server. Navigate to the project, and then select the 'Project Setup' tab. Scroll down to the 'Additional Customizations' button. When you click the button, somewhere in the list of features you should find a checkbox for 'Data Entry Trigger'. Make sure it's checked, and make sure the URL is `http://172.26.216.66/redcap`. If everything is configured right, you can click the test button to make sure redcap can reach the server. If it reports an error, the network configuration may have changed and you should contact Dawn for help! *Note:* The data entry trigger may only be configured for redcap records on CAMH's server.
+
+**Both:** The REDCap configuration for each study can be found in the study config file (e.g. `/archive/code/config/MYE01_settings.yml`). To learn more about each field see the [configuration documentation here](http://imaging-genetics.camh.ca/datman/datman_conf.html#redcap)
+
+Make sure that the values in the settings file match the actual redcap form field names.
+
+**DET only:** pay special attention to the RedcapUrl, RedcapProjectId, RedcapInstrument and RedcapRecordKey as these are what the server sends with the initial trigger. To see what's really being sent and compare it to what you expect you can log into the dashboard's server and check the log for exceptions while re-saving the record.
+
+```bash
+ssh srv-dashboard.camhres.ca
+# This will update with newest log messages. Leave this process running while
+# you re-save the record on REDCap and then return to look for error messages.
+sudo tail -f /var/log/uwsgi/app/dashboard.log
+```
+
+If one of these settings fields are misconfigured you should see a message that looks like this
+```
+[dashboard.blueprints.redcap.utils] INFO - Failed to find redcap config for record YOUR_RECORD_ID_HERE in project YOUR_PROJECT_NUM_HERE on server YOUR_REDCAP_URL_HERE with instrument YOUR_INSTRUMENT_HERE. Exception - Can't locate Redcap config.
+```
+
+You can then update the settings file to match the values from the log message if they differ from what was expected. After updating the settings file you should run parse_config.py to push the changes to the dashboard database.
+
+```bash
+module load lab-code
+parse_config.py STUDYNAME
+```
+
+Once this is finished, you should be able to re-save the survey again (or re-run dm_redcap_scan_completed), refresh the dashboard page and the survey should appear.
+
+If it's still missing at this point, contact Dawn asap!
+
+## Common Nightly Log Issues
+Section under construction, nag me about it if you came here looking for help! - Dawn
+
+## Header Differences
+Section under construction, nag me about it if you came here looking for help! - Dawn
+
+## Missing Metrics
+Section under construction, nag me about it if you came here looking for help! - Dawn
