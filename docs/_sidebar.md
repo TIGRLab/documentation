@@ -11,16 +11,16 @@
 
 - Technical Skills
 
-  - [Remote Access](technical_skills/beginner/Remote-Access.md)
-  - [SciNet](technical_skills/beginner/SciNet.md)
-  - [Writing SLURM Scripts](technical_skills/beginner/Writing-Slurm-scripts.md)
-  - [Using the Terminal](technical_skills/beginner/Using-The-Terminal.md)
-  - [Using Git](technical_skills/beginner/Using-Git.md)
-  - [The bashrc file](technical_skills/beginner/The-bashrc-file.md)
-  - [Introduction to Coding](technical_skills/beginner/Introduction-to-Coding.md)
-  - [Tips for Reproducible Research](technical_skills/beginner/Tips-for-reproducible-research.md)
-  - [Using Python Virtual Environments](technical_skills/beginner/Using-Python-Virtual-Environments.md)
-  - [Writing Python Tests](technical_skills/advanced/Writing-Tests.md)
+  - [Remote Access](technical_skills/Remote-Access.md)
+  - [SciNet](technical_skills/SciNet.md)
+  - [Writing SLURM Scripts](technical_skills/Writing-Slurm-scripts.md)
+  - [Using the Terminal](technical_skills/Using-The-Terminal.md)
+  - [Using Git](technical_skills/Using-Git.md)
+  - [The bashrc file](technical_skills/The-bashrc-file.md)
+  - [Introduction to Coding](technical_skills/Introduction-to-Coding.md)
+  - [Tips for Reproducible Research](technical_skills/Tips-for-reproducible-research.md)
+  - [Using Python Virtual Environments](technical_skills/Using-Python-Virtual-Environments.md)
+  - [Writing Python Tests](technical_skills/Writing-Tests.md)
 
 - Resources
 
@@ -40,18 +40,18 @@
 
 - Working with the Archive
 
-  - [Data Naming](data/introduction/Data-Naming.md)
-  - [Data Documentation](data/introduction/Data-Documentation.md)
-  - [Datalad](data/introduction/Datalad.md)
-  - [QC](data/intermediate/QC.md)
-  - [QC - Staff Guide](data/intermediate/QC-staff-guide.md)
-  - [Datalad on SciNet](data/intermediate/Datalad-on-SciNet.md)
-  - [XNAT](data/advanced/XNAT.md)
-  - [Study Setup](data/advanced/Study-Setup.md)
-  - [Organization](data/advanced/Data-Organization.md)
-  - [Archiving Pipelines](data/advanced/Archive-Pipelines.md)
-  - [Renaming CAMH Scans](data/advanced/Renaming-CAMH-Scans-with-scans.csv.md)
-  - [Dashboard Database](data/advanced/Dashboard-Database.md)
+  - [Data Naming](data/Data-Naming.md)
+  - [Data Documentation](data/Data-Documentation.md)
+  - [Datalad](data/Datalad.md)
+  - [QC](data/QC.md)
+  - [QC - Staff Guide](data/QC-staff-guide.md)
+  - [Datalad on SciNet](data/Datalad-on-SciNet.md)
+  - [XNAT](data/XNAT.md)
+  - [Study Setup](data/Study-Setup.md)
+  - [Organization](data/Data-Organization.md)
+  - [Archiving Pipelines](data/Archive-Pipelines.md)
+  - [Renaming CAMH Scans](data/Renaming-CAMH-Scans-with-scans.csv.md)
+  - [Dashboard Database](data/Dashboard-Database.md)
 
 - Other
 

@@ -102,12 +102,12 @@ Before signing off on a session you should make sure that none of the issues lis
   <tbody>
     <tr>
       <td>An expected scan is missing from the session.</td>
-      <td><a href="#/data/intermediate/QC?id=missing-scans">See here.</a></td>
+      <td><a href="#/data/QC?id=missing-scans">See here.</a></td>
       <td>Unless the scan has tech notes and the technician left a note that those scans were not completed, contact the appropriate staff member. Don't sign off on the session until all scans are located or confirmed to not exist.</td>
     </tr>
     <tr>
       <td>The session has a 'missing redcap' message.</td>
-      <td><a href="#/data/intermediate/QC?id=missing-redcap">See here.</a></td>
+      <td><a href="#/data/QC?id=missing-redcap">See here.</a></td>
       <td>Contact the appropriate staff member. Do not sign off on the session until the REDCap survey has been found or is confirmed to not exist.</td>
     </tr>
     <tr>
@@ -116,7 +116,7 @@ Before signing off on a session you should make sure that none of the issues lis
     </tr>
     <tr>
       <td>There is an error message referencing the session ID (or one of the session's scans) in the most recent nightly log</td>
-      <td><a href="#/data/intermediate/QC?id=common-nightly-log-issues">See here.</a></td>
+      <td><a href="#/data/QC?id=common-nightly-log-issues">See here.</a></td>
       <td>Contact the appropriate staff member. Don't sign off on the session until all associated errors are resolved.</td>
     </tr>
     <tr>
@@ -130,7 +130,7 @@ Before signing off on a session you should make sure that none of the issues lis
     </tr>
     <tr>
       <td>A scan has header differences listed.</td>
-      <td><a href="#/data/intermediate/QC?id=header-differences">See here.</a></td>
+      <td><a href="#/data/QC?id=header-differences">See here.</a></td>
       <td>Contact the appropriate staff member. Don't sign off on the scan or the session it belongs to until the issue has been resolved.</td>
     </tr>
     <tr>
@@ -153,7 +153,7 @@ Before signing off on a session you should make sure that none of the issues lis
     </tr>
     <tr>
       <td>An anatomical, functional or resting state scan is missing QC images.</td>
-      <td><a href="#/data/intermediate/QC?id=missing-metrics">See here.</a></td>
+      <td><a href="#/data/QC?id=missing-metrics">See here.</a></td>
       <td>Contact the appropriate staff member. Do not sign off on the scan until the issue is resolved.</td>
     </tr>
   </tbody>

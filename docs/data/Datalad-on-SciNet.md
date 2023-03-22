@@ -8,7 +8,7 @@
 
 SciNet’s archival storage is located on tape, under the High Performance Storage System file system. In order to govern read and write access to tape, there are three primary access methods for this storage: two via the Slurm queue, and one [globus](https://globus.computecanada.ca/) the web interface. Although Datalad has preliminary support for globus, we’re not yet using it, so we’ll focus on the first two methods: the `vfsshort` queue and the `archive` queues.
 
-The `archive` queues, `archiveshort` and `archivelong`, are SciNet slurm partitions, are intended for non-interactive use (though they can be used interactively), via specialised software designed for HPSS. This is how we _store_ our archive data on SciNet. The `vfsshort` is designed for interactive use via normal unix filesystem utilities. We’ll cover that here, as it pertains to using [DataLad](/data/introduction/Datalad). We’ve (or will be storing) store our archives on HPSS in the form of [Remote Indexed Archives](http://handbook.datalad.org/en/latest/beyond_basics/101-147-riastores.html), which are flat collections of optimised datalad datasets. You don’t need to appreciate the way these stores are constructed to use them, though, you just need to understand basic datalad dataset management.
+The `archive` queues, `archiveshort` and `archivelong`, are SciNet slurm partitions, are intended for non-interactive use (though they can be used interactively), via specialised software designed for HPSS. This is how we _store_ our archive data on SciNet. The `vfsshort` is designed for interactive use via normal unix filesystem utilities. We’ll cover that here, as it pertains to using [DataLad](/data/Datalad). We’ve (or will be storing) store our archives on HPSS in the form of [Remote Indexed Archives](http://handbook.datalad.org/en/latest/beyond_basics/101-147-riastores.html), which are flat collections of optimised datalad datasets. You don’t need to appreciate the way these stores are constructed to use them, though, you just need to understand basic datalad dataset management.
 
 Currently only POND is stored in this way, though in the future all SciNet archives will take this form. Let’s access the POND archive by way of demonstrations now.
 
@@ -53,7 +53,7 @@ In this machine on `vfsshort` you have access to an additional filesystem mount,
 
 SciNet’s queue system automatically defaults to setting your current working directory as the directory the job was launched from, *iff* that directory is available on the job node (in this case, `$SCRATCH` is available in both places, so we’re still there).
 
-As you’ll remember from [previous datalad tutorials](/data/introduction/Datalad), install operations on correctly formatted datasets are generally quite fast, because only only text files of 1kB or smaller are actually copied.
+As you’ll remember from [previous datalad tutorials](/data/Datalad), install operations on correctly formatted datasets are generally quite fast, because only only text files of 1kB or smaller are actually copied.
 
 Installing from an RIA store has a slightly different syntax than installing from a normal dataset, but it’s fundamentally very similar. Let’s get POND now:
 

@@ -3,7 +3,7 @@
    - Anyone interested in how we manage the data in `/archive`
 
 ## Overview
-The data on the TIGRlab system lives in `/archive/data` (this is identical to `/archive/data/data-2.0`). 
+The data on the TIGRlab system lives in `/archive/data` (this is identical to `/archive/data/data-2.0`).
 
 Briefly, MRI data is uploaded to our [XNAT database](http://da55.pet.utoronto.ca:5004), downloaded into `/archive/data` by [`datman`](https://github.com/TIGRLab/datman), and then further inspected and pre-processed by various pipelines managed by `datman`. All important metadata is also stored here regarding data quality and organization.
 
@@ -79,11 +79,11 @@ This folder contains a lot of interested information used by `datman` to manage 
 + `blacklist.csv`: Contains a list of bad files (at the scan level) that should **not** be exported from XNAT into the raw file formats. These files will not be available for analysis in any form due to data artifacts or incidental findings. A short note will accompany the scan identifying the reason for exclusion.
 + `greylist.csv`: A list of suspicious files. Not sure if they are OK to analyze or not (this is up to you), but still flagged for some reason. It's a good idea to look at this list before analyzing your data.
 + `checklist.csv`: Keeps track of the qc outputs that have been looked at, and those that are still outstanding.
-+ `exportinfo.csv`: Uses [regular expressions, or regex](http://www.aivosto.com/vbtips/regex.html) to map between the 'DICOM discription field' of the header to the appropriate 'tag' (e.g., DTI-60, RST; see [Data Naming Convention](/data/introduction/Data-Naming) for more details). The tag is used by our pipelines to figure out which kind of analysis to do for a given dataset, and can be used by you to find all available data:
++ `exportinfo.csv`: Uses [regular expressions, or regex](http://www.aivosto.com/vbtips/regex.html) to map between the 'DICOM discription field' of the header to the appropriate 'tag' (e.g., DTI-60, RST; see [Data Naming Convention](/data/Data-Naming) for more details). The tag is used by our pipelines to figure out which kind of analysis to do for a given dataset, and can be used by you to find all available data:
 
 ```
 jdv@davinci:/archive/data-2.0/SPINS/data/nii$ find . -name '*RST*' > ~/list-of-SPINS-restingstate-nii.txt
-jdv@davinci:/archive/data-2.0/SPINS/data/nii$ head ~/list-of-SPINS-restingstate-nii.txt 
+jdv@davinci:/archive/data-2.0/SPINS/data/nii$ head ~/list-of-SPINS-restingstate-nii.txt
 ./SPN01_MRC_PHA_FBN0054/SPN01_MRC_PHA_FBN0054_RST_04_EPI-3x3x4xTR2-Resting-Eye-closed.nii.gz
 ./SPN01_MRC_PHA_FBN0054/SPN01_MRC_PHA_FBN0054_RST_05_Resting-State-test-TR2.4sec.nii.gz
 ./SPN01_MRC_PHA_FBN0055/SPN01_MRC_PHA_FBN0055_RST_05_EPI-3x3x4xTR2-Resting-Eye-closed.nii.gz
@@ -107,4 +107,4 @@ Contains, for each subject, the full QC output as an `html` page. Also contains 
 **website/**
 
 Some studies have websites for tracking the QC of the phantom data over time. This is where we store a github pages - formatted (via jekyll) website that we push to github to be rendered as a subdomain of our website: http://imaging-genetics.camh.ca/. For a list of the currently active websites, see here: http://imaging-genetics.camh.ca/database/qc/
- 
+
