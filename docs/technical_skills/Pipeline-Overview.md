@@ -22,7 +22,7 @@ These pipelines are created using [Nipype](https://nipype.readthedocs.io/en/late
 #### Purpose of Containers
 
 
-The technical definition for containers are operating system virtualization, **but** you can think of them as a literal virtual container. A container, in plain terms, is a file that can hold an operating system, data, software, and your own code altogether, and then can be accessed as if it was it was  software itself. For example, you can have an fmriprep container which holds a specific version of fmriprep and then you can run the container file itself to use that fmriprep on any data you want. 
+The technical definition for containers are operating system virtualization, **but** you can think of them as a literal virtual container. A container, in plain terms, is a file that can hold an operating system, data, software, and your own code altogether, and then can be accessed as if it was it was  software itself. For example, you can have an fmriprep container which holds a specific version of fmriprep and then you can run the container file itself to use that fmriprep on any data you want.
 
 While this may seem redundant at first (why wouldn't you just use that software as intended on your own system?), there are many benefits to using containers:
 
@@ -66,7 +66,7 @@ singularity run -H /your/singularity/home/dir \
 
 ### Running the pipeline with a custom environment
 
-#### Modules 
+#### Modules
 
 Many pipelines mentioned all use some sort of software for each preprocessing step. For example, fmriprep needs FSL to run many of its steps. On our system, you need to load in that software using our module system. If you haven't heard of that before, it's recommended you read [this documentation on how to use modules](http://imaging-genetics.camh.ca/documentation/#/introduction/Modules?id=modules). For our fmriprep example, you would have to load in FSL like the following:
 ```
@@ -100,7 +100,7 @@ git clone https://github.com/nipreps/fmriprep
 # Go into the fmriprep directory
 cd fmriprep
 
-# Activate your bashrc to install 
+# Activate your bashrc to install
 source /where/you/wrote/.bashrc
 # Install a version of Python if you haven't already
 pyenv install 3.7.3
@@ -162,7 +162,7 @@ In practice, this is done through writing **slurm scripts**. These scripts conta
 
 Keep in mind that writing your own slurm scripts is an **alternative** to tigr-purr. It is recommended to try tigr-purr itself for high reproducibility (using same params as everyone else) and ease of use, but there will always remain use cases for your own slurm scripts. For example, you would want to write your own slurm script if your desired pipeline is not setup in tigr-purr or if it's a custom job that isn't widely applicable to the lab (like analysis scripts) and therefore generally not worth implementing in nextflow for the future.
 
-On top of reading [our documentation for writing slurm scripts](http://imaging-genetics.camh.ca/documentation/#/technical_skills/beginner/Writing-Slurm-scripts), the best way to understand how to get started with slurm scripts is to look at one.
+On top of reading [our documentation for writing slurm scripts](http://imaging-genetics.camh.ca/documentation/#/technical_skills/Writing-Slurm-scripts), the best way to understand how to get started with slurm scripts is to look at one.
 
 `run_fmriprep.sh`:
 ```
@@ -207,7 +207,7 @@ singularity run \
 
 This script runs fmriprep on five subjects from the input BIDS dataset `/your/bids/dir`, and outputs it to `/your/output/dir`. The fmriprep container is `/fmriprep/sing.img`, and the list of subjects is `/your/study/sublist.txt`. This is a basic template for how slurm scripts on BIDS datasets will generally look like, and you can start from this and swap out the parameters to get it working for your purposes. For example, you can change the container and command to run qsiprep instead, or change the subject list and bids dataset to use different input data.
 
-**Note:** The sublist is just a list of subjects in a text file, using their bids name, one subject per line. 
+**Note:** The sublist is just a list of subjects in a text file, using their bids name, one subject per line.
 For example:
 ```
 sub-CMH0019
@@ -219,7 +219,7 @@ sub-CMH0040
 
 ### Submitting your jobs to the queue
 
-Once you have your slurm script all good to go, you submit it to slurm using `sbatch`, ie 
+Once you have your slurm script all good to go, you submit it to slurm using `sbatch`, ie
 ```
 sbatch <slurm_script>
 ```
