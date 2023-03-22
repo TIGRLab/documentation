@@ -5,6 +5,82 @@ The QC Dashboard was developed in the Kimel Lab and released in December 2016 in
 
 ---
 
+## QC Process Overview
+Before signing off on a session you should make sure that none of the issues listed below exist, or that they have been resolved if they do. For detailed information on how to use the dashboard itself, [see here](#dashboard-basics). For more information on what to look for when visually inspecting scans, [see here](#visual-inspection-of-scans).
+
+<table>
+  <thead>
+    <tr>
+      <td rowspan="2" align="center">Problem</td>
+      <td colspan="2" align="center">Solution</td>
+    </tr>
+    <tr>
+      <td align="center">Kimel Staff</td>
+      <td align="center">Other Users</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>An expected scan is missing from the session.</td>
+      <td><a href="#/data/QC-staff-guide?id=missing-scans">See here.</a></td>
+      <td>Unless the scan has tech notes and the technician left a note that those scans were not completed, contact the appropriate staff member. Don't sign off on the session until all scans are located or confirmed to not exist.</td>
+    </tr>
+    <tr>
+      <td>The session has a 'missing redcap' message.</td>
+      <td><a href="#/data/QC-staff-guide?id=missing-redcap">See here.</a></td>
+      <td>Contact the appropriate staff member. Do not sign off on the session until the REDCap survey has been found or is confirmed to not exist.</td>
+    </tr>
+    <tr>
+      <td>(CAMH scans only) The tech notes contain a message from the MR Tech.</td>
+      <td colspan="2" align="center">Blacklist any scans if instructed to do so in the notes. Copy any tech note messages into the blacklist comment.</td>
+    </tr>
+    <tr>
+      <td>There is an error message referencing the session ID (or one of the session's scans) in the most recent nightly log</td>
+      <td><a href="#/data/QC-staff-guide?id=common-nightly-log-issues">See here.</a></td>
+      <td>Contact the appropriate staff member. Don't sign off on the session until all associated errors are resolved.</td>
+    </tr>
+    <tr>
+      <td>A scan from the session has a geometric pattern or an unfamiliar artifact</td>
+      <td>Bring it to the group to determine next steps / if the data can be salvaged. Ensure the appropriate MRI physicist is contacted.</td>
+      <td>If it's a new artifact, or you're unsure if the artifact is too severe for the data to be used, contact the appropriate kimel staff member. Otherwise, flag the scan with a descriptive message.</td>
+    </tr>
+    <tr>
+      <td>A scan cuts off part of the brain.</td>
+      <td colspan="2" align="center">Flag the scan with a descriptive message.</td>
+    </tr>
+    <tr>
+      <td>A scan has header differences listed.</td>
+      <td><a href="#/data/QC-staff-guide?id=header-differences">See here.</a></td>
+      <td>Contact the appropriate staff member. Don't sign off on the scan or the session it belongs to until the issue has been resolved.</td>
+    </tr>
+    <tr>
+      <td>A series is truncated (i.e. its 'length' in the scan table is shorter than expected for that type of scan).</td>
+      <td colspan="2" align="center">Blacklist the truncated series.</td>
+    </tr>
+    <tr>
+      <td>The session has repeated series.</td>
+      <td colspan="2" align="center">If only one of the repeated scans is usable, approve it and blacklist the others. If all of them are bad/mediocre instead flag all of them with a descriptive message so that pipelines can average the files.</td>
+    </tr>
+    <tr>
+      <td>There's an incidental finding (e.g. a tumor or other medical anomaly)</td>
+      <td>Bring it to the group immediately to determine next steps. Contact Arash Nazeri for further information on the issue. Once the issue has been resolved, use the 'incidental finding' button in the dashboard to record relevant info.</td>
+      <td>Contact the appropriate staff member immediately.</td>
+    </tr>
+    <tr>
+      <td>The distortion maps are not distorted in opposite directions (i.e. they appear identical)</td>
+      <td>Open a GitHub issue to document the problem and contact the appropriate MRI physicist.</td>
+      <td>Contact the appropriate staff member.</td>
+    </tr>
+    <tr>
+      <td>An anatomical, functional or resting state scan is missing QC images.</td>
+      <td><a href="#/data/QC-staff-guide?id=missing-metrics">See here.</a></td>
+      <td>Contact the appropriate staff member. Do not sign off on the scan until the issue is resolved.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
 ## Logging in
 
 The Dashboard is found at http://srv-dashboard.camhres.ca/. This website is only
@@ -82,82 +158,6 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 - The papaya viewer allows you to scroll through the scan to look for artifacts
 
 ![](../../_images/qc_dash/scan_view.png)
-
----
-
-## QC Process Overview
-Before signing off on a session you should make sure that none of the issues listed below exist, or that they have been resolved if they do. For detailed information on how to use the dashboard itself, [see here](#dashboard-basics)
-
-<table>
-  <thead>
-    <tr>
-      <td rowspan="2" align="center">Problem</td>
-      <td colspan="2" align="center">Solution</td>
-    </tr>
-    <tr>
-      <td align="center">Kimel Staff</td>
-      <td align="center">Other Users</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>An expected scan is missing from the session.</td>
-      <td><a href="#/data/QC?id=missing-scans">See here.</a></td>
-      <td>Unless the scan has tech notes and the technician left a note that those scans were not completed, contact the appropriate staff member. Don't sign off on the session until all scans are located or confirmed to not exist.</td>
-    </tr>
-    <tr>
-      <td>The session has a 'missing redcap' message.</td>
-      <td><a href="#/data/QC?id=missing-redcap">See here.</a></td>
-      <td>Contact the appropriate staff member. Do not sign off on the session until the REDCap survey has been found or is confirmed to not exist.</td>
-    </tr>
-    <tr>
-      <td>(CAMH scans only) The tech notes contain a message from the MR Tech.</td>
-      <td colspan="2" align="center">Blacklist any scans if instructed to do so in the notes. Copy any tech note messages into the blacklist comment.</td>
-    </tr>
-    <tr>
-      <td>There is an error message referencing the session ID (or one of the session's scans) in the most recent nightly log</td>
-      <td><a href="#/data/QC?id=common-nightly-log-issues">See here.</a></td>
-      <td>Contact the appropriate staff member. Don't sign off on the session until all associated errors are resolved.</td>
-    </tr>
-    <tr>
-      <td>A scan from the session has a geometric pattern or an unfamiliar artifact</td>
-      <td>Bring it to the group to determine next steps / if the data can be salvaged. Ensure the appropriate MRI physicist is contacted.</td>
-      <td>If it's a new artifact, or you're unsure if the artifact is too severe for the data to be used, contact the appropriate kimel staff member. Otherwise, flag the scan with a descriptive message.</td>
-    </tr>
-    <tr>
-      <td>A scan cuts off part of the brain.</td>
-      <td colspan="2" align="center">Flag the scan with a descriptive message.</td>
-    </tr>
-    <tr>
-      <td>A scan has header differences listed.</td>
-      <td><a href="#/data/QC?id=header-differences">See here.</a></td>
-      <td>Contact the appropriate staff member. Don't sign off on the scan or the session it belongs to until the issue has been resolved.</td>
-    </tr>
-    <tr>
-      <td>A series is truncated (i.e. its 'length' in the scan table is shorter than expected for that type of scan).</td>
-      <td colspan="2" align="center">Blacklist the truncated series.</td>
-    </tr>
-    <tr>
-      <td>The session has repeated series.</td>
-      <td colspan="2" align="center">If only one of the repeated scans is usable, approve it and blacklist the others. If all of them are bad/mediocre instead flag all of them with a descriptive message so that pipelines can average the files.</td>
-    </tr>
-    <tr>
-      <td>There's an incidental finding (e.g. a tumor or other medical anomaly)</td>
-      <td>Bring it to the group immediately to determine next steps. Contact Arash Nazeri for further information on the issue. Once the issue has been resolved, use the 'incidental finding' button in the dashboard to record relevant info.</td>
-      <td>Contact the appropriate staff member immediately.</td>
-    </tr>
-    <tr>
-      <td>The distortion maps are not distorted in opposite directions (i.e. they appear identical)</td>
-      <td>Open a GitHub issue to document the problem and contact the appropriate MRI physicist.</td>
-      <td>Contact the appropriate staff member.</td>
-    </tr>
-    <tr>
-      <td>An anatomical, functional or resting state scan is missing QC images.</td>
-      <td><a href="#/data/QC?id=missing-metrics">See here.</a></td>
-      <td>Contact the appropriate staff member. Do not sign off on the scan until the issue is resolved.</td>
-    </tr>
-  </tbody>
-</table>
 
 ---
 
