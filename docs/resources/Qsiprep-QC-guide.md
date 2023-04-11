@@ -37,10 +37,6 @@ Description: In this case the stretching artifact is still visible, however it d
 Bad Distortion Example:
 
 
-
-<p id="gdcalert4" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image4.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert5">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
 ![](../_images/qsiprep_qc_guide/image4.png)
 
 Description: The corrected DWI shows significant stretching, distorting the shape of the brain. This may cause problems such as the Brain mask detected and outlining the stretching artifact rather than the brain itself. In addition the corrected DWI shows that part of the signal is cut off around the cerebellum/ occipital lobe area.
