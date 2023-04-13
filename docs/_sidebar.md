@@ -19,6 +19,7 @@
   - [The bashrc file](technical_skills/The-bashrc-file.md)
   - [Introduction to Coding](technical_skills/Introduction-to-Coding.md)
   - [Tips for Reproducible Research](technical_skills/Tips-for-reproducible-research.md)
+  - [Running Pipelines](technical_skills/Pipeline-Overview.md)
   - [Using Python Virtual Environments](technical_skills/Using-Python-Virtual-Environments.md)
   - [Writing Python Tests](technical_skills/Writing-Tests.md)
 
@@ -26,6 +27,7 @@
 
   - [fMRI Bootcamp](https://cbmm.mit.edu/fmri-bootcamp)
   - [Pipeline QC Guide](resources/Pipeline-QC-guide.md)
+  - [Qsiprep QC Guide](resources/Qsiprep-QC-guide.md)
   - [Compute Cluster](resources/Compute-Clusters.md)
   - [Private Modules](resources/Private-Modules.md)
   - [Laptops](resources/Laptops.md)
