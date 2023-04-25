@@ -49,16 +49,6 @@ The `filetype/` name tells you a little about what kind of data you should expec
 + `bids/`: NIFTI-to-BIDS converted data.
 + `RESOURCES`: all 'other' (non dicom) data extracted from the XNAT server for a given subject. This could be things like the raw behavioural data from a subject, or the tech notes from the MR unit.
 
-Accompanying these files are outputs from some of our analytic pipelines:
-
-+ `dtifit/`: the outputs of [FSL's DTIFIT](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide).
-+ `enigmaDTI/`: the outputs of the [ENIGMA DTI](http://enigma.ini.usc.edu/ongoing/dti-working-group/) pipeline.
-+ `freesurfer/`: the outputs of [Freesurfer](http://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferAnalysisPipelineOverview).
-+ `hcp/`: the outputs of the HCP-conversion of the anatomical data (via [epitome](https://github.com/josephdviviano/epitome)).
-+ `imob/`: the pre-processed data (via [epitome](https://github.com/josephdviviano/epitome)) and 1st level GLM analysis files from the imitate-observe experiment.
-+ `ea/`: the pre-processed data (via [epitome](https://github.com/josephdviviano/epitome)) and 1st level GLM analysis files from the empathic accuracy experiment.
-+ `rest/`: the pre-processed data (via [epitome](https://github.com/josephdviviano/epitome)) of the resting state experiment.
-
 And some other, less organized folders might be there too:
 
 + `clinical/`: contains *timestamped* spreadsheets of cognitive variables pulled from the Slaight Centre.
