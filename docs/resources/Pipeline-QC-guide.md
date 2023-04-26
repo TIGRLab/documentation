@@ -59,10 +59,18 @@ This page is meant to provide guidance for both Kimel Staff and Researchers duri
 
 #### Major Skullstrip Brain Clip
 
-![](../_images/pipeline_qc_guide/image22.png) 
+![](../_images/pipeline_qc_guide/image22.png)
+
+_The Cerebellum is excluded here_
+
 ![](../_images/pipeline_qc_guide/image16.png)
 
+_Part of the frontal cortex is excluded here_
+
 ![](../_images/pipeline_qc_guide/image20.gif)
+
+_The brain is stretched down into the cerebellum_
+
 ![](../_images/pipeline_qc_guide/image35.gif)
 
 **Conditions to mark as fail:**
@@ -89,7 +97,9 @@ fMRIPrep. fMRIPrep will auto-detect that the image has already been skull-stripp
 
 ### BET Segmentation Issue
 
-![](../_images/pipeline_qc_guide/image13.png) 
+![](../_images/pipeline_qc_guide/image13.png)
+
+_Blue outline excludes parts of the white matter (arrows indicate where the white matter is excluded_
 
 **Conditions to mark as fail:**
 
@@ -115,6 +125,8 @@ estimated or show up as NaNs in the fMRIPrep confounds TSV file.
 
 ![](../_images/pipeline_qc_guide/image23.png) 
 
+_This image should only have the brain. If the skull is shown then the skull hasn't been properly masked out_
+
 **Conditions to mark as fail:**
 
 This rating does not constitute a **Fail**. Only rate has fail if the red/blue outline extends into the skull
@@ -134,6 +146,8 @@ None.
 ### Skullstrip Clips Temporal Brain
 
 ![](../_images/pipeline_qc_guide/image6.png) 
+
+_The temporal lobe (shown with arrows) are being excluded from the outlining_
 
 **Conditions to mark as fail:**
 
@@ -157,6 +171,8 @@ correction
 
 ![](../_images/pipeline_qc_guide/image18.png) 
 
+_The freesurfer reconstruction (blue/red outline) excludes part of the brain_
+
 **Conditions to mark as fail:**
 This rating should always result in a **Fail**
 
@@ -178,6 +194,8 @@ None, but flag these incidents
 ### MNI Warp Issues
 
 ![](../_images/pipeline_qc_guide/image21.gif)
+
+_The MNI warp includes the skull_
 
 **Conditions to mark as fail:**
 
@@ -201,7 +219,9 @@ MNI transformation results in significant displacement of gyri inappropriately.
 
 ### Minor MNI Edge Issues
 
-<img width="499" alt="image" src="https://user-images.githubusercontent.com/80138145/219748567-1ddaecd9-721d-4b66-bb57-1bb174a473c0.png">
+![](../_images/pipeline_qc_guide/minor_warp.gif)
+
+_Small part of the skull is being included in this warp._
 
 **Conditions to mark as fail:**
 
@@ -264,7 +284,9 @@ auto-detect that the image has already been skull-stripped
 
 ### Apparent Signal Dropout (Aging Population)
 
-<img width="434" alt="image" src="https://user-images.githubusercontent.com/80138145/219758219-3b0add68-aa61-45ed-ae66-f10f6dd1aa2d.png">
+![](../_images/pipeline_qc_guide/apparent_signal_dropout.gif)
+
+_Arrow shows dark region where there is brain (subcortical area)_
 
 **Conditions to mark as fail:**
 
@@ -407,7 +429,10 @@ Data is unusable
 
 ### SDC Mis-correction
 
-![](../_images/pipeline_qc_guide/image31.gif)
+![](../_images/pipeline_qc_guide/SDC_miscorrection.gif)
+
+_The correction here pushes the brain inwards so that it ends up matching less with the blue outline_
+
 ![](../_images/pipeline_qc_guide/image2.gif)
 
 **Conditions to mark as fail:**
@@ -437,14 +462,18 @@ handle as appropriate
 ### EPI-to-T1 mismatch
 
 ![](../_images/pipeline_qc_guide/image33.gif)
+
+_The EPI (fMRI) brain has significant parts of it outside the red/blue outline. This constitutes a fail_
+
 ![](../_images/pipeline_qc_guide/image32.gif)
 
 ![](../_images/pipeline_qc_guide/image19.png)
 
-![](../_images/pipeline_qc_guide/image5.gif)
+_The red/blue outline looks shifted away from the EPI (fMRI) brain. This constitutes a fail_
 
-_Look at row 1, col 3_
-_Look at row 3, col 4_
+![](../_images/pipeline_qc_guide/epi_to_t1.gif)
+
+_Green arrows show where mismatches may occur BUT do not constitute a fail. These regions typically exhibit bad signal acquisition and so we expect gaps in these regions_
 
 **Conditions to mark as fail:**
 Mark as **Fail** if the red/blue outline does not overlay over the EPI (fMRI) image by a large margin.
@@ -470,6 +499,8 @@ Recommendations:
 ### Background Peripheral EPI Artifact
 
 ![](../_images/pipeline_qc_guide/image17.png)
+
+_The background part of the image (non-brain areas) has bright lines._
 
 **Conditions to mark as fail:**
 
