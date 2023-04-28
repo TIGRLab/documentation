@@ -1,6 +1,6 @@
 # QSIPrep BIDS app for DWI processing
  
- QSIPrep is a BIDS App for processing diffusion MRI data. It is great because, like fMRIprep, it runs from BIDS, does cutting-edge stuff, and outputs lots of useful QC images and QA metrics on DWI images.
+ QSIPrep is a BIDS App for preprocessing diffusion MRI data. It is great because, like fMRIprep, it runs from BIDS, uses cutting-edge preprocessing techniques, and outputs lots of useful QC images and QA metrics on DWI images. This page will go over the basics of using it for your own preprocessing purposes.
  
  #### The QSIPrep paper:
  
@@ -10,7 +10,7 @@
  
  https://qsiprep.readthedocs.io/
  
-## This doc will discuss the following steps in a QSIprep workflow
+### This doc will discuss the following steps in a QSIprep workflow
  
  - [QSIprep] pre-processing
  - [QSIprep] reconstruction
@@ -23,12 +23,12 @@ QSIprep works from BIDS converted datasets.
 
 For projects that use the ABCD-GE 104 direction DWI sequence (i.e. the TAY cohort study, SPIN-R - SPIN30). We find the following post-steps need to be done to prepare the data.
 
-- update IntendedFor - add to dmri-microstructure repo
-- make sure epi scans being used as dwi field maps don't have any non b=0 volumes (also remove .bvec and .bval files)
+- Update the IntendedFor (ie. any dwi fieldmap jsons should have the IntendedFor key pointing to their respective diffusion inputs)
+- Make sure epi scans being used as dwi field maps don't have any non b=0 volumes (also remove `.bvec` and `.bval` files)
 
 ## Pre-processing
 
-This is an example of the preprocessing script used for a SPIN30 - which uses the ABCD-GE 104 direction DWI sequence. With reverse phase encoded b-zero fmaps for succestibility distortion correction (SDC).
+This is an example of the preprocessing script used for a SPIN30 - which uses the ABCD-GE 104 direction DWI sequence with reverse phase encoded b-zero fmaps for succestibility distortion correction (SDC).
 
 ```
 #!/bin/bash -l
@@ -144,7 +144,7 @@ singularity run \
   --notrack
 ```
 
-to submit above bit:
+To submit the above:
 
 ```sh
 STUDY="COGBDY"
@@ -156,49 +156,34 @@ sbatch --array=0-${N_SUBJECTS} ./code/run_qsiprep.sh
 ```
 
 
-## Check resolution of input dwi scans
+## Check resolution of dwi scans
 
-fslinfo
-CLZ - resolution is 0.8 or 1
+Sometimes the input dwi from the study is too high quality for downstream pipelines to run. For example, if you plan to use ukftractography on your qsiprep outputs, a dwi resolution of 0.8 or 1.0 might be too high quality for ukftractography and cause it to crash. 
 
-may need to downsample data to get tractography to run
+In these cases, qsiprep has a flag called `--output-resolution` just for these purposes. Depending on the input resolution and what you're doing with the data, it's advisable to set that argument to 1.7 or 2.0 to ensure no issues downstream.
 
+You can check the resolution of a dwi file using fslinfo. Once FSL is loaded in, simply run `fslinfo <dwi.nii.gz>` and the resolution of the file is the `dim4` value in the output. You can also use `fslinfo` to check the output resolution of qsiprep.
 
 ## Distortion Correction
 
-- make sure field maps have IntendedFor tag
-- if using T1w for SDC, include both `--use-syn-sdc` and `--force-syn`
+Distortion correction is an important step for cleaning up diffusion data. In order for the default distortion correction to run though, you need to make sure that the fieldmaps necessary are in the input bids dataset *and* that they are pointing to the correct diffusion data. This is done via the `IntendedFor` flag. Specifically, each diffusion fieldmap json should have a key called `IntendedFor` with the value being the relative path to its respective dwi scan. For examples, take a look at studies that have had qsiprep run on them and are correctly bids formatted (ex. CLZ, TAY, SPINS).
+
+If you have have no usable fieldmaps for the participant(s) you wish to preprocess, you should use synthetic distortion correction which is supported in qsiprep. To use it, you need to add two flags to your qsiprep command: `--use-syn-sdc` and `--force-syn`.
 
 ## Dealing with different diffusion sampling schemes
 
-- split into separate files
+- Split into separate files
     - sub-X_ses-X_acq-21_dwi.nii.gz
     - sub-X_ses-X_acq-22_dwi.nii.gz
     - sub-X_ses-X_acq-23_dwi.nii.gz
     - sub-X_ses-X_acq-multishell_dwi.nii.gz
-- dwi in single file
+- Dwi in single file
 
-## Updating eddy parameters
+## QC Pages
 
-# QC Pages
+For info on how to view and work with the output QC pages of qsiprep, see our guide [here](/resources/Qsiprep-QC-guide.md).
 
-How to share static and dynamic QC pages with others
-
-Examples of good and bad data
-
-## Static
-
-- distortion correction is most important
-
-## Dynamic
-
-https://www.nipreps.org/dmriprep-viewer/#/
-
-- summarize metrics in R report
-- look at triplanar view of all volumes
-- look at colour FA image
-
-## Reconstruction
+## Reconstruction and Downstream Pipelines
 
 ### reorient_fslstd
 
@@ -223,16 +208,9 @@ singularity run \
   --notrack
 ```
 
-### DTIFIT
+### DTIFIT and TBSS
 
-module load FSL/6.0.1
-dtifit ....
-
-### TBSS
-
-1.
-2.
-3.
+For info on how to run DTIFIT and TBSS on the outputs of QSIprep, visit [this repo](TODO: link to erins repo) and take a look at the readme!
 
 ### amico_noddi
 
@@ -258,4 +236,11 @@ singularity run \
   --notrack
 ```
 
-## Studies that have been run
+## Studies that have been run in QSIprep
+
+Here are some studies that have qsiprep outputs on our system already. These may be useful to you either to use the outputs yourself, or to compare what qsiprep outputs should generally look like. You can find them in the archive in their respective pipelines folders.
+
+ - CLZ
+ - SPINS
+ - SPASD
+ - TAY
