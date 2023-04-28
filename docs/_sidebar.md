@@ -55,16 +55,12 @@
   - [Renaming CAMH Scans](data/Renaming-CAMH-Scans-with-scans.csv.md)
   - [Dashboard Database](data/Dashboard-Database.md)
 
-- Other
-
-  - [Software](other/Software.md)
-  - [SOP Tracking Documents](other/SOP-Tracking-Documents.md)
-  - [Editing Documentation](other/Editing-Documentation.md)
-
-- Methods
+- Methods and Softare
 
   - [FreeSurfer](methods/freesurfer.md)
-  - [FSL-based dMRI Processing](methods/FSL-based-DTI-Processing.md)
   - [DTIPrep-based dMRI Processing](methods/DTIPrep.md)
   - [QSIprep-based dMRI Processing](methods/QSIprep_based_DWI_processing.md)
   - [fMRI Processing](methods/fMRI-Processing.md)
+  - [Software](other/Software.md)
+  - [SOP Tracking Documents](other/SOP-Tracking-Documents.md)
+  - [Editing Documentation](other/Editing-Documentation.md)
