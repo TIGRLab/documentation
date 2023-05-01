@@ -59,3 +59,40 @@ Data should be accompanied by a `README.md` file containing the information belo
 ### Specific Notes: 
 Anything else you think a future lab member should know about this analysis before calculating new values
 
+### Example README
+* The following is an example of a README file written for fmriprep outputs
+
+```
+Date Processed: 06-07-2022 to 06-13-2022 
+
+Dataset:
+	StudyInfo: Refer to ../bids/dataset_description.json
+	Dataset: fMRIPrep outputs on baseline OPT data
+	
+Contact People:
+	Principal Investigator: Aristotle Voineskos
+	Primary: Jerrold Jeyachandra - jerrold.jeyachandra@camh.ca
+	Others: Please contact Yar Al Dabagh - yar.aldabagh@camh.ca
+	Citation: Please cite our paper (https://doi.org/10.1038/s41592-018-0235-4), and include the generated citation boilerplate within the Methods section of the text.
+
+System:
+	Dependencies: 
+		source /KIMEL/tigrlab/quarantine/scc_modules.sh
+		module load python/3.6_boutiques-0.5.20
+		module load nextflow
+		export NXF_VER=20.10.0
+		module load tools/Singularity/3.5.3
+	RanFrom: SCC
+	
+Commands/Scripts:
+	Invocation: Refer to ./invocation/runs/fmriprep-20.2.0_GE_invocation_07-06-2022.json 
+		    Refer to ./invocation/runs/fmriprep-20.2.0_Prisma_invocation_07-06-2022.json
+	Command: Refer to ./nextflow_report/
+	
+Quality Control:
+	Primary: Jerrold Jeyachandra - jerrold.jeyachandra@camh.ca
+	QCfile: ./qc/fmriprep/
+
+Data Requests/Publications: N/A
+```
+
