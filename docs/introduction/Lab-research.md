@@ -49,3 +49,13 @@ Alzheimer’s Disease Neuroimaging Initiative (ADNI). [Genome-wide interaction s
 5. Viviano J, Buchanan R, Calarco N, Gold J, Foussias G, Bhagwat N, Stefanik L, Hawco C, DeRosse P, Argyelan M,Turner J, Chavez S, Kochunov P, Kingsley P, Zhou X, Malhotra A, Voineskos AN. [Resting-state connectivity biomarkers of cognitive performance and social function in Schizophrenia Spectrum Disorders and healthy controls](https://www.sciencedirect.com/science/article/pii/S0006322318314392). Biological Psychiatry. In Press.
 
      _In this multi-centre research domain criteria study, we found different patterns of neural circuit activation during functional brain imaging using machine learning tools that were independent of diagnostic group. These patterns were related to neurocognitive and social cognitive performance. We then replicated these findings in an independent sample. Our findings provide new neuroimaging endpoints for cognitive function, that can be tested in target-engagement-based intervention studies.
+
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Reviewed contents. Need to add newer papers and foundation reports. |
+<!-- sign-off-sheet:end -->

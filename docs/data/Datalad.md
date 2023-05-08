@@ -273,3 +273,12 @@ rm -rf ${dataset}
 In this case, we are telling datalad to eliminate all local copies of data from where you installed it, and the `git annex uninit` command tells `git annex`, the underlying engine which powers DataLad, to delete the locked repository annex. Once this is gone, the entire dataset folder can be deleted as normal.
 
 *Note that this will not work for datasets which you created or own the original copy of.* `datalad` complains strongly when deleting the last known version of any data anywhere. Ordinarily this won’t come up, as you won’t ever be deleting the contents of the archive, only **your local copy of archive data**. If you create your own dataset, a dataset which is never cloned or installed to another location; you **must use `git annex drop --force`**, as this compels `git annex` to ignore its internal data safety checks and kill the last known existing copies of whatever was in your dataset. Use this only when you know for certain that you will never need something again.
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->

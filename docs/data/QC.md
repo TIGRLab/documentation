@@ -197,3 +197,12 @@ Image is tilted and can see long lines following the outline of the skull.
 Can see lighter instances of scan outside of main Field of View.
 
 ![](../../_images/qc_dash/artifacts_ghost.png)
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->

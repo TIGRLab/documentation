@@ -21,7 +21,7 @@ After you've clicked the button it should bring up a list of issue templates you
 
 ## Help with CAMH Problems
 
-CAMH has a website for general IT help [available here](http://scotty.camh.ca/) (including info on [how to reset your CAMH password](http://scotty.camh.ca/how-to/reset-your-password)). Generally anything you need can be found by searching on insite.camh.net if you're using a computer on the camh network.
+CAMH has a website for general IT help [available here](http://scotty.camh.ca/) (including info on [how to reset your CAMH password](http://scotty.camh.ca/how-to/reset-your-password)). You must be on the camh network to view these pages. Generally anything you need can be found by searching on insite.camh.net if you're using a computer on the camh network.
 
 Important parts of the site include:
 
@@ -30,8 +30,17 @@ Important parts of the site include:
 
 ## Help with the SCC
 
-The SCC documentation [can be found here](http://info2.camh.net/scc/index.php/Main_Page). If you're having trouble logging in you can first contact Dawn for help. If you need a module to be made available on the SCC you can talk to Dawn or Kevin. Other technical problems should go directly to Andy Wang.
+The SCC documentation [can be found here](https://kcniconfluence.camh.ca/pages/viewpage.action?pageId=29294847). If you're having trouble logging in you can first contact Dawn for help. If you need a module to be made available on the SCC you can talk to Dawn or Kevin. Other technical problems should go directly to the SCC's help email: scc_support@camh.ca
 
 ## Help with Scinet
 
-SciNet official documentation [is found here](https://docs.scinet.utoronto.ca/index.php/Main_Page). Dawn, Kevin, Jerry or Mike can also be approached for any technical issues. If they can't help with your problem they may help you contact scinet's tech support team.
+SciNet official documentation [is found here](https://docs.scinet.utoronto.ca/index.php/Main_Page). Dawn or Kevin can also be approached for any technical issues. If they can't help with your problem they may help you contact scinet's tech support team.
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| Dawn | May 8th, 2023 | Updated links and references to employees that have left. |
+<!-- sign-off-sheet:end -->
