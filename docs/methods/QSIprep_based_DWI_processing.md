@@ -210,7 +210,7 @@ singularity run \
 
 ### DTIFIT and TBSS
 
-For info on how to run DTIFIT and TBSS on the outputs of QSIprep, visit [this repo](TODO: link to erins repo) and take a look at the readme!
+For info on how to run DTIFIT and TBSS on the outputs of QSIprep, visit [our enigmaDTI repo](https://github.com/TIGRLab/enigmaDTI) and take a look at the README!
 
 ### amico_noddi
 
