@@ -75,7 +75,7 @@ NOTE2: If you're on a mac you may find that certain keyboard characters (like th
 
 ```
 cd $HOME/Library/Application\ Support/Citrix\ Receiver
-sed -e 's/KeyboardLayout=(User Profile)/KeyboardLayout=US/' -i SAVE Config 
+sed -e 's/KeyboardLayout=(User Profile)/KeyboardLayout=US/' -i SAVE Config
 ```
 
 Now you will be able to view the files in your home directory on the jupyter hub sidebar. You can now open them in a new browser tab to look at them.
@@ -89,3 +89,12 @@ Follow steps 1 through 3 above. Go to http://srv-dashboard.camhres.ca/. Congrats
 Follow steps 1 through 3 above. Then navigate to rstudio.camh.ca.
 
 NOTE: You can follow the same symlinking procedure as in the Jupyterhub access through the "terminal" tab on rstudio to copy your files over to the current directory so you can work on them
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Needs update. |
+<!-- sign-off-sheet:end -->

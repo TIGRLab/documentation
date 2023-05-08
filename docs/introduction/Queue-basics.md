@@ -22,3 +22,13 @@ The queue master also gets periodic updates from each of its worker machines. If
 - If your job takes any input files you have to read them from somewhere accessible to every machine (/projects or /scratch or /archive in the case of our lab's queue or the SCC's queue). If your script has any outputs you should also put them in a globally accessible place or your outputs will get 'stuck' on whatever machine the job ran on.
 - If your job is using anything at all that is in your home folder it will fail or behave unexpectedly (home folders are local to each machine, and therefore different on every computer).
 - If the queue master goes down for any reason, new jobs can't be submitted or assigned.
+
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->

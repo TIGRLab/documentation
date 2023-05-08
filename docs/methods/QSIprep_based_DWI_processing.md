@@ -1,17 +1,17 @@
 # QSIPrep BIDS app for DWI processing
- 
+
  QSIPrep is a BIDS App for processing diffusion MRI data. It is great because, like fMRIprep, it runs from BIDS, does cutting-edge stuff, and outputs lots of useful QC images and QA metrics on DWI images.
- 
+
  #### The QSIPrep paper:
- 
+
  Cieslak, M., Cook, P.A., He, X. et al. (2021) QSIPrep: an integrative platform for preprocessing and reconstructing diffusion MRI data. Nat Methods 18 (775–778) doi: https://doi.org/10.1038/s41592-021-01185-5
- 
+
  #### For more information about QSIprep - check the help docs:
- 
+
  https://qsiprep.readthedocs.io/
- 
+
 ## This doc will discuss the following steps in a QSIprep workflow
- 
+
  - [QSIprep] pre-processing
  - [QSIprep] reconstruction
  - [post] calculation of tensors with FSL's dtifit
@@ -19,7 +19,7 @@
 
 ## BIDS
 
-QSIprep works from BIDS converted datasets. 
+QSIprep works from BIDS converted datasets.
 
 For projects that use the ABCD-GE 104 direction DWI sequence (i.e. the TAY cohort study, SPIN-R - SPIN30). We find the following post-steps need to be done to prepare the data.
 
@@ -259,3 +259,13 @@ singularity run \
 ```
 
 ## Studies that have been run
+
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->

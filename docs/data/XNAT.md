@@ -54,8 +54,17 @@ If using the Compressed Image Upload tool, please be patient. Transfers can take
 
 ### Uploading non-DICOM Data
 
-**IMPORTANT:** NON-DICOM DATA CANNOT BE RECEIVED IN THE SINGLE .ZIP FILE. BEHAVIOURAL MEASURES, MRI TECH NOTES IN PDF FORM, AND SOME SITES’ PHYSIOLOGICAL SIGNAL FILES NEED TO BE UPLOADED SEPARATELY. 
+**IMPORTANT:** NON-DICOM DATA CANNOT BE RECEIVED IN THE SINGLE .ZIP FILE. BEHAVIOURAL MEASURES, MRI TECH NOTES IN PDF FORM, AND SOME SITES’ PHYSIOLOGICAL SIGNAL FILES NEED TO BE UPLOADED SEPARATELY.
 
-Please create a separate file for these types of data in the participant’s ‘resources’ folder, in accordance with [these general instructions](https://kcniconfluence.camh.ca/display/NPP/Non-DICOM+Upload+Instructions). 
+Please create a separate file for these types of data in the participant’s ‘resources’ folder, in accordance with [these general instructions](https://kcniconfluence.camh.ca/display/NPP/Non-DICOM+Upload+Instructions).
 
 Any task data output (both .txt and .edat2 files) should be uploaded to a folder under ‘resources’ called ‘behav’. In the unusual situation that any NIfTI files are to be uploaded, they should be uploaded to a folder under ‘resources’ called ‘NII’.
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->
