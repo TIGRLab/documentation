@@ -30,7 +30,7 @@ Description: Slices from the preprocessed diffusion data output. This is the fin
 ![](../_images/qsiprep_qc_guide/image5.png)
 
 
-Description: In this case the stretching artifact is still visible, however it does not significantly alter the shape of the brain. In addition, the brain mask generated still resembles the shape/outline of a brain and is mostly unaffected by the stretching artifact. Thus, the scan was passed. 
+Description: In this case the stretching artifact is still visible, however it does not significantly alter the shape of the brain. In addition, the brain mask generated still resembles the shape/outline of a brain and is mostly unaffected by the stretching artifact. Thus, the scan was passed.
 
 **Bad Example:**
 
@@ -53,7 +53,7 @@ Since this uses similar motion metrics as other nipreps outputs, this should be 
 ![](../_images/qsiprep_qc_guide/image3.png)
 
 
-Description: The y axis has a relatively low maximum value, indicating overall lower levels of motion. The two traces do not significantly diverge from each other, with generally similar peaks and troughs. 
+Description: The y axis has a relatively low maximum value, indicating overall lower levels of motion. The two traces do not significantly diverge from each other, with generally similar peaks and troughs.
 
 **Bad Example:**
 
@@ -66,7 +66,7 @@ Description: The y axis has a relatively high maximum value, indicating a higher
 
 ### Q-space sampling (original vs corrected)
 
-This is a before and after look at the **sampling of all the q-space coordinates** from the diffusion data. The highlighted ball in red is the currently selected volume, which can be controlled via the slider under the “Corrected dwi” section. 
+This is a before and after look at the **sampling of all the q-space coordinates** from the diffusion data. The highlighted ball in red is the currently selected volume, which can be controlled via the slider under the “Corrected dwi” section.
 
 This is an easy check; all you need to verify is that the points are evenly spaced out before and after, i.e. it resembles a ball. It is very uncommon for this to mess up, so uncommon that we weren’t able to find a bad example in our datasets to show off here!
 
@@ -75,7 +75,7 @@ This is an easy check; all you need to verify is that the points are evenly spac
 
 ![](../_images/qsiprep_qc_guide/image7.png)
 
-Description: Compare the two images by rotating the images around and ensuring that they both generally make out the shape of a ball as seen above. 
+Description: Compare the two images by rotating the images around and ensuring that they both generally make out the shape of a ball as seen above.
 
 
 ### Brain mask computed on T1w, and mapped to B0
@@ -86,7 +86,7 @@ Description: Compare the two images by rotating the images around and ensuring t
 ![](../_images/qsiprep_qc_guide/image11.png)
 
 
-Description: The brain mask creates a clear outline of the brain, with no significant deviations. Ensure to scroll through each of the sections, ensuring that the brain mask has correctly registered to the brain’s shape at each slice. 
+Description: The brain mask creates a clear outline of the brain, with no significant deviations. Ensure to scroll through each of the sections, ensuring that the brain mask has correctly registered to the brain’s shape at each slice.
 
 **Intermediate Example:**
 
@@ -125,7 +125,7 @@ Mask detects stretching from corrected DWI
 ![](../_images/qsiprep_qc_guide/image2.png)
 
 
-Description: In this case, each of the different directions as indicated by the different colors are localized to their own locations and discernible from each other. For example the sagittal section shows a clear separation between the green and red tracts. 
+Description: In this case, each of the different directions as indicated by the different colors are localized to their own locations and discernible from each other. For example the sagittal section shows a clear separation between the green and red tracts.
 
 **Bad Example:**
 
@@ -136,3 +136,13 @@ Description: In this case, each of the different directions as indicated by the 
 Description:
 
 Rather than having distinct and isolated segments of red, green and blue, they are overlapping strongly. These regions should be isolated and easily discernible from each other.
+
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->
