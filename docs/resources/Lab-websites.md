@@ -18,8 +18,8 @@ This page lists links to our various servers, paid subscriptions and passpack (w
 
 ## TIGRlab - data management
 
-[QC Dashboard](srv-dashboard.camhres.ca). The Dashbaord was developed in the lab to facilitate QA and QC of imaging data. The Dashboard requires GitHub authentication.
+[QC Dashboard](srv-dashboard.camhres.ca). The Dashboard was developed in the lab to facilitate QA and QC of imaging data. The Dashboard requires GitHub authentication.
 
-[XNAT](https://xnat.imaging-genetics.camh.ca/app/template/Login.vm). XNAT is our imaging database. All of the imaging data that we manage is stored in XNAT, in addition to our file system.
+[XNAT](https://xnat.camh.ca/xnat). XNAT is our imaging database. All of the imaging data that we manage is stored in XNAT, in addition to our file system.
 
 [REDCap](https://edc.camhx.ca/redcap/). We are increasingly using REDCap for non-imaging data management. You can request an account via an IMG request. Please note that the SPINS study is hosted by [AHRC at St. Mikes](https://redcap.smh.ca/redcap/), and [regulated clinical trials](https://redcap.camhx.ca/redcap/index.php?action=myprojects) also have their own instance at CAMH.

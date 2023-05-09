@@ -11,3 +11,5 @@
 [CAMH Secure File Transfer (SFT)](filetransfer.camh.ca) allows has strong encryption, automatic receipt notification, and transfer of up to 2GB.
 
 [Remote Access](https://remote.camh.ca/vpn/index.html) - CAMH allows access to some services, including a Google Chrome browser that's on the internal network, through their 'remote' portal.
+
+[Holidays](http://insite.camh.net/files/CAMH_Statutory_Holidays_2023_128027.pdf) - CAMH recognized statutory holidays for 2023, search for it on insite for updated ones.
