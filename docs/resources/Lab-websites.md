@@ -18,7 +18,7 @@ This page lists links to our various servers, paid subscriptions and passpack (w
 
 ## TIGRlab - data management
 
-[QC Dashboard](https://srv-dashboard.camhres.ca). The Dashbaord was developed in the lab to facilitate QA and QC of imaging data. The Dashboard requires GitHub authentication.
+[QC Dashboard](srv-dashboard.camhres.ca). The Dashboard was developed in the lab to facilitate QA and QC of imaging data. The Dashboard requires GitHub authentication.
 
 [XNAT](https://xnat.camh.ca/xnat). XNAT is our imaging database. All of the imaging data that we manage is stored in XNAT, in addition to our file system.
 
