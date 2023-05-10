@@ -63,4 +63,13 @@ If you just need to do scan QC, once you've opened a chrome browser on the netwo
 
 If you want a terminal and/or plan to use rstudio then, after opening a chrome browser on the network by following the steps above, go to https://rstudio.camh.ca and login with your scc/lab account.
 
-NOTE: You can follow the same symlinking procedure as in the Jupyterhub section through the "terminal" tab on rstudio to copy your files over to the current directory so you can work on them
+NOTE: You can follow the same symlinking procedure as in the Jupyterhub access through the "terminal" tab on rstudio to copy your files over to the current directory so you can work on them
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Needs update. |
+<!-- sign-off-sheet:end -->

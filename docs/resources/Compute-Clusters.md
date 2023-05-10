@@ -43,3 +43,12 @@ Anyone with a lab account can get access to CAMH's Specialised Computing Cluster
 Our instructions for registering for an using SciNet can be [found here](https://github.com/TIGRLab/admin/wiki/SciNet). Scinet is the largest of all three clusters, but is widely (and heavily) used so you're more likely to have to wait. You'll also have to be more careful about how you structure your jobs and what resources you request because they're more strict.
 
 Once you have an account you can login with `ssh <scinet username>@niagara.scinet.utoronto.ca`
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->

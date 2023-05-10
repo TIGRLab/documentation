@@ -1,15 +1,15 @@
 # Kimel Pipeline QC Guideline
 
-This page is meant to provide guidance for both Kimel Staff and Researchers during quality rating/control of standard MR pipelines. It is meant to serve as a reference guide to many common issues observed during assessment of pipeline outputs. 
+This page is meant to provide guidance for both Kimel Staff and Researchers during quality rating/control of standard MR pipelines. It is meant to serve as a reference guide to many common issues observed during assessment of pipeline outputs.
 
 ## Contents
 
 - [fMRIPrep Anatomical](#fmriprep-anatomical)
   - [Good Examples](#examples-of-good-anatomical-scans)
-  - [Issues](#examples-of-anatomical-scan-issues) 
+  - [Issues](#examples-of-anatomical-scan-issues)
 - [fMRIPrep Functional](#fmriprep-functional)
   - [Good Examples](#examples-of-good-fmri-scans)
-  - [Issues](#examples-of-functional-scan-issues) 
+  - [Issues](#examples-of-functional-scan-issues)
 - [Freesurfer QC](freesurfer-qc)
 - [Ciftify](#ciftify)
 
@@ -123,7 +123,7 @@ estimated or show up as NaNs in the fMRIPrep confounds TSV file.
 
 ### Over-inclusive Freesurfer Masking
 
-![](../_images/pipeline_qc_guide/image23.png) 
+![](../_images/pipeline_qc_guide/image23.png)
 
 _This image should only have the brain. If the skull is shown then the skull hasn't been properly masked out_
 
@@ -145,7 +145,7 @@ None.
 
 ### Skullstrip Clips Temporal Brain
 
-![](../_images/pipeline_qc_guide/image6.png) 
+![](../_images/pipeline_qc_guide/image6.png)
 
 _The temporal lobe (shown with arrows) are being excluded from the outlining_
 
@@ -169,7 +169,7 @@ correction
 
 ### Under-inclusive Freesurfer Masking
 
-![](../_images/pipeline_qc_guide/image18.png) 
+![](../_images/pipeline_qc_guide/image18.png)
 
 _The freesurfer reconstruction (blue/red outline) excludes part of the brain_
 
@@ -269,7 +269,7 @@ auto-detect that the image has already been skull-stripped
 3. [EPI Strong Bias Field](#epi-strong-bias-field)
 4. [Overinclusive EPI Brainmask](#overinclusive-epi-brainmask)
 
-### Good SDC Correction 
+### Good SDC Correction
 
 ![](../_images/pipeline_qc_guide/image3.gif)
 
@@ -530,13 +530,13 @@ For the OPT baseline freesurfer longitudinal outputs, we have used [visualqc](ht
 **Description:**
 
   ● Non-cortical tissue (typically dura) is segmented as grey matter
-  
+
   ● OPTIMUM: Commonly found in Parietal/Occipital regions
-  
+
   ● Most common error observed in Freesurfer outputs
-  
+
   ● Typically coded as a ‘minor error’ - something for the researcher to be aware of when using the data. However this is not a failing criterion
-  
+
 **Possible Consequences:**
 
 Cortical thickness over-estimates
@@ -562,19 +562,19 @@ Underestimation of cortical volume
 **Recommendations:**
 
   ● Sensitivity analyses it data is not being corrected
-  
+
   ● If fixing:
-  
+
    ○ If the underlying cause of mis-segmentation can be attributed to the **brainmask.mgz** file clipping the brain. Then you may try the following steps:
 
    i. mri_convert the T1.mgz to a NIFTI file
-      
+
    ii. Run an alternative skull-strip tool (i.e ROBEX) to generate a better brainmask
-      
+
    iii. Convert the result using mri_convert into brainmask.mgz
-      
+
    iv. Re-run freesurfer
-      
+
    ○ If this is just a pial segmentation issue then follow the guide on: [Fixing Freesurfer pial surfaces](https://surfer.nmr.mgh.harvard.edu/fswiki/FsTutorial/PialEdits_freeview)
 
 ## Ciftify
@@ -618,3 +618,13 @@ None
 **Recommendations:**
 
 1. Run ```ciftify_clean_img``` first on your data then re-visualize to confirm.
+
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+<!-- sign-off-sheet:end -->

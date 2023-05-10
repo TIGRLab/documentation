@@ -49,16 +49,6 @@ The `filetype/` name tells you a little about what kind of data you should expec
 + `bids/`: NIFTI-to-BIDS converted data.
 + `RESOURCES`: all 'other' (non dicom) data extracted from the XNAT server for a given subject. This could be things like the raw behavioural data from a subject, or the tech notes from the MR unit.
 
-Accompanying these files are outputs from some of our analytic pipelines:
-
-+ `dtifit/`: the outputs of [FSL's DTIFIT](http://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FDT/UserGuide).
-+ `enigmaDTI/`: the outputs of the [ENIGMA DTI](http://enigma.ini.usc.edu/ongoing/dti-working-group/) pipeline.
-+ `freesurfer/`: the outputs of [Freesurfer](http://surfer.nmr.mgh.harvard.edu/fswiki/FreeSurferAnalysisPipelineOverview).
-+ `hcp/`: the outputs of the HCP-conversion of the anatomical data (via [epitome](https://github.com/josephdviviano/epitome)).
-+ `imob/`: the pre-processed data (via [epitome](https://github.com/josephdviviano/epitome)) and 1st level GLM analysis files from the imitate-observe experiment.
-+ `ea/`: the pre-processed data (via [epitome](https://github.com/josephdviviano/epitome)) and 1st level GLM analysis files from the empathic accuracy experiment.
-+ `rest/`: the pre-processed data (via [epitome](https://github.com/josephdviviano/epitome)) of the resting state experiment.
-
 And some other, less organized folders might be there too:
 
 + `clinical/`: contains *timestamped* spreadsheets of cognitive variables pulled from the Slaight Centre.
@@ -79,7 +69,7 @@ This folder contains a lot of interested information used by `datman` to manage 
 + `blacklist.csv`: Contains a list of bad files (at the scan level) that should **not** be exported from XNAT into the raw file formats. These files will not be available for analysis in any form due to data artifacts or incidental findings. A short note will accompany the scan identifying the reason for exclusion.
 + `greylist.csv`: A list of suspicious files. Not sure if they are OK to analyze or not (this is up to you), but still flagged for some reason. It's a good idea to look at this list before analyzing your data.
 + `checklist.csv`: Keeps track of the qc outputs that have been looked at, and those that are still outstanding.
-+ `exportinfo.csv`: Uses [regular expressions, or regex](http://www.aivosto.com/vbtips/regex.html) to map between the 'DICOM discription field' of the header to the appropriate 'tag' (e.g., DTI-60, RST; see [Data Naming Convention](/data/Data-Naming) for more details). The tag is used by our pipelines to figure out which kind of analysis to do for a given dataset, and can be used by you to find all available data:
++ `exportinfo.csv`: Uses [regular expressions, or regex](http://www.aivosto.com/vbtips/regex.html) to map between the 'DICOM discription field' of the header to the appropriate 'tag' (e.g., DTI-60, RST; see the [XNAT Naming Convention on the KCNI confluence](https://kcniconfluence.camh.ca/display/NPP/XNAT+Naming+Convention) for more details). The tag is used by our pipelines to figure out which kind of analysis to do for a given dataset, and can be used by you to find all available data:
 
 ```
 jdv@davinci:/archive/data-2.0/SPINS/data/nii$ find . -name '*RST*' > ~/list-of-SPINS-restingstate-nii.txt
