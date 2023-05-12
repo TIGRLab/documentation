@@ -1,6 +1,6 @@
 # Remote Access
 
-There are two main methods for remote access into the lab. The least laggy and most versatile is the ssh tunnel. But the easiest to set up is to use the https://remote.camh.ca based methods described below.
+There are two main methods for remote access into the lab. The least laggy and most versatile is the ssh tunnel. But the easiest to set up is to use one of the "remote camh" based methods described below.
 
 If you are missing accounts listed as a requirement for an access method below you can see instructions [here on our admin wiki](https://github.com/TIGRLab/admin/wiki/Setting-Up-Lab-Access) for requesting any accounts you may need (you must login to github to view this page).
 
@@ -20,6 +20,7 @@ Note that you must be logged in to github to view either of those links.
 ## remote.camh.ca
 
 **Required Accounts:** CAMH Account, Lab account, SCC Access
+
 **Required Software:** [Citrix Receiver](https://www.citrix.com/products/receiver/)
 
 1. Go to https://remote.camh.ca
