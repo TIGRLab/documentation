@@ -8,10 +8,10 @@
   - [Queue Basics](introduction/Queue-basics.md)
   - [Getting Help](introduction/Getting-Help.md)
   - [Lab Research](introduction/Lab-research.md)
+  - [Remote Access](introduction/Remote-Access.md)
 
 - Technical Skills
 
-  - [Remote Access](technical_skills/Remote-Access.md)
   - [SciNet](technical_skills/SciNet.md)
   - [Writing SLURM Scripts](technical_skills/Writing-Slurm-scripts.md)
   - [Using the Terminal](technical_skills/Using-The-Terminal.md)
