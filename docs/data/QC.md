@@ -88,7 +88,7 @@ available on CAMH's network, which means that if you're working offsite you must
 
 The Dashboard authenticates users via GitHub, so if you do not have a GitHub account you will need to [make one](https://github.com). The first time you access the dashboard you should click on the request account button, as shown below. This will take you to a page where you can request access for your GitHub account. Once your account has been approved by an admin, you can return to http://srv-dashboard.camhres.ca and use the 'GitHub Login' button to login with your github username and password. If you do not receive approval from an admin within 72 hours email us at tigr.lab@camh.ca to ask us for assistance.
 
-![](/documentation/_images/qc_dash/account_request.png)
+![](documentation/_images/qc_dash/account_request.png)
 
 ---
 
