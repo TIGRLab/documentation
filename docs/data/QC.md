@@ -88,7 +88,7 @@ available on CAMH's network, which means that if you're working offsite you must
 
 The Dashboard authenticates users via GitHub, so if you do not have a GitHub account you will need to [make one](https://github.com). The first time you access the dashboard you should click on the request account button, as shown below. This will take you to a page where you can request access for your GitHub account. Once your account has been approved by an admin, you can return to http://srv-dashboard.camhres.ca and use the 'GitHub Login' button to login with your github username and password. If you do not receive approval from an admin within 72 hours email us at tigr.lab@camh.ca to ask us for assistance.
 
-![](./account_request.png)
+![](../_images/qc_dash/account_request.png)
 
 ---
 
@@ -99,11 +99,11 @@ The Dashboard authenticates users via GitHub, so if you do not have a GitHub acc
 After logging in you should see a list of studies you have access to. Click on
 one to see the study details. If this list is missing a study you need access to contact us at tigr.lab@camh.ca or on slack.
 
-![](../../_images/qc_dash/main_view.png)
+![](../_images/qc_dash/main_view.png)
 
 First, on the study home page you may see a box outlining any outstanding QC for the study.
 
-![](../../_images/qc_dash/outstanding_qc.png)
+![](../_images/qc_dash/outstanding_qc.png)
 
 * **Missing Scans** - A REDCap form has been filled out for the ID, but no scan data exists in the archive yet. This means either it has not been uploaded to XNAT or there was an error in transfer from XNAT.
   * If the error has been there for _48 hours or more_ it must be investigated.
@@ -115,11 +115,11 @@ First, on the study home page you may see a box outlining any outstanding QC for
 
 Next, you may see a 'Nightly Run Log' box showing the most recent run of the nightly pipelines for this study. Error messages in this run log should be resolved as soon as possible, when found. If you're not a Kimel Lab staff member you should contact one promptly to draw attention to any errors. If you are, [see here](#common-nightly-log-issues) for more info on resolving common issues.
 
-![](../../_images/qc_dash/nightly_run.png)
+![](../_images/qc_dash/nightly_run.png)
 
 Most QC will be done from the 'timepoint' page. Select a session by either clicking on a row from the 'Outstanding QC' window, or by clicking 'Session list' and then clicking on a session ID.
 
-![](../../_images/qc_dash/session_list.png)
+![](../_images/qc_dash/session_list.png)
 
 ### Timepoint view
 
@@ -128,7 +128,7 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 - Create issue: Open a GitHub issue to notify staff members about missing data or other QC related issues.
 - Comments: Used to hold notes during the QC process or make a record of anything unusual. No notification is sent to staff, it's only for personal record keeping.
 
-![](../../_images/qc_dash/timepoint_view.png)
+![](../_images/qc_dash/timepoint_view.png)
 
 - Delete session (trash can icon): Delete a session from the archive and/or dashboard database. This will not delete user comments or other sessions associated with the timepoint.
 - KCNI ID: Session named based on KCNI naming convention (used on XNAT by our lab).
@@ -137,7 +137,7 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 - View Survey: Takes you to the REDCap form filled out for the session.
 - View Tech Notes (CAMH scans only): the notes from the MRI technician at the time of the scan (Check before MRI Scans).
 
-![](../../_images/qc_dash/session_view.png)
+![](../_images/qc_dash/session_view.png)
 
 - Series: Scan Number
 - Tag: Type of Scan
@@ -151,13 +151,13 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 - Comment: Displays the comment entered when a scan is blacklisted or flagged
 - Delete (trash can icon): Appears on hover. Remove only a particular scan from the archive and/or dashboard database. All previously completed QC for other scans will be left intact, as well as user comments.
 
-![](../../_images/qc_dash/scan_table.png)
+![](../_images/qc_dash/scan_table.png)
 
 - Reached by clicking the series description of a scan in the scan table
 - Header differences will display here (if any exist)
 - The papaya viewer allows you to scroll through the scan to look for artifacts
 
-![](../../_images/qc_dash/scan_view.png)
+![](../_images/qc_dash/scan_view.png)
 
 ---
 
@@ -184,19 +184,19 @@ DPA and DAP (or DTI)
 #### Motion Artifact (Ringing):
 Can see rings near the posterior end of the brain.
 
-![](../../_images/qc_dash/artifacts_ringing.png)
+![](../_images/qc_dash/artifacts_ringing.png)
 
 ### Motion Artifact (Shadowed Arc Artifact):
 
 Image is tilted and can see long lines following the outline of the skull.
 
-![](../../_images/qc_dash/artifacts_arc.png)
+![](../_images/qc_dash/artifacts_arc.png)
 
 ### Ghosting:
 
 Can see lighter instances of scan outside of main Field of View.
 
-![](../../_images/qc_dash/artifacts_ghost.png)
+![](../_images/qc_dash/artifacts_ghost.png)
 
 <!-- sign-off-sheet:start -->
 <!-- sign-off-cadence:1 year -->
