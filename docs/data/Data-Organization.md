@@ -81,3 +81,11 @@ Contains, for each subject, the full QC output as an `html` page. Each folder wi
 
 Contains the outputs of all pre-processing pipelines that the lab routinely runs. If you need to work with the outputs of a pipeline and data for a subject (or multiple subjects) is missing you should contact a staff member to have them update the contents.
 
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| Dawn | June 02, 2023 | Removed some legacy stuff, updated links and descriptions. |
+<!-- sign-off-sheet:end -->
