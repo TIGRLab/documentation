@@ -5,24 +5,24 @@
 ## Overview
 The data on the TIGRlab system lives in `/archive/data` (this is identical to `/archive/data/data-2.0`).
 
-Briefly, MRI data is uploaded to our [XNAT database](http://da55.pet.utoronto.ca:5004), downloaded into `/archive/data` by [`datman`](https://github.com/TIGRLab/datman), and then further inspected and pre-processed by various pipelines managed by `datman`. All important metadata is also stored here regarding data quality and organization.
+Briefly, MRI data is uploaded to our [XNAT database](https://xnat.camh.ca/xnat/), downloaded into `/archive/data` by [`datman`](https://github.com/TIGRLab/datman), and then further inspected and pre-processed by various pipelines. All important metadata is also stored here regarding data quality and organization.
 
 The folder structure for a typical project will look like this:
 ```
-/archive/data/SPINS
+/archive/data/STUDYID
     bin/
     data/
     docs/
     logs/
     metadata/
     qc/
-    website/
+    pipelines/
     README.md
 ```
 
 **bin/**
 
-Contains scripts run on a particular project. Every project has a `run.sh` file, with is run ever night. This nightly run **manages everything found in data/**. If you have a question about what is / is not being done to our data, start here.
+Contains any scripts that we run on the project. Every project has a `run_data_kimel.sh` script in this folder that we run nightly. If you have any questions about what processing is happening on a project check this file first. Some older projects also have a `run_pipelines_scc.sh` file in this directory which contains commands we _used_ to run on the data using the SCC. We no longer run any nightly processing on the SCC so these are retained mostly for record keeping.
 
 **data/**
 
@@ -31,23 +31,23 @@ The organization of the `data/` folder is roughly:
 ```
 filetype/
     subject1/
-        file1.nii.gz
-        file2.nii.gz
+        file1.<ext>
+        file2.<ext>
     subject2/
-        file1.nii.gz
-        file2.nii.gz
+        file1.<ext>
+        file2.<ext>
 ```
 
-The `filetype/` name tells you a little about what kind of data you should expect to find within, organized by each subject. Here are the most common ones for raw data:
+The `filetype/` folder name tells you a little about what kind of data you should expect to find within, organized by each subject. Here are the most common ones for raw data:
 
-+ `dcm/`: sample DICOMs taken from XNAT to facilitate DICOM header comparisons.
-+ `zips/`: in studies collected at our scanner (`CMH`), the raw `.zip` files that come off of the MR server are stored here.
-+ `dicom/`: softlinked files to the zip files in `zips/`, renamed to match our naming convention. Some of these renames are defined manually by the `metadata/scans.csv` file, described later.
-+ `mnc/`: DICOM-to-MINC converted data.
++ `zips/`: in studies collected at our scanner (`CMH`), or UofT's scanner, the raw `.zip` files that come off of the MR server are stored here. Recently, even CMH scans are being uploaded directly to XNAT so this folder may not exist for newer studies even if the study is collecting at CAMH.
++ `dicom/`: Contains symlinks to the zip files in `zips/`, but with our naming convention applied. Some of these renames are defined manually by the `metadata/scans.csv` file, described later.
 + `nii/`: DICOM-to-NIFTI converted data.
-+ `nrrd/`: DICOM-to-nrrd converted data.
 + `bids/`: NIFTI-to-BIDS converted data.
 + `RESOURCES`: all 'other' (non dicom) data extracted from the XNAT server for a given subject. This could be things like the raw behavioural data from a subject, or the tech notes from the MR unit.
++ `dcm/`: sample DICOMs taken from XNAT to facilitate DICOM header comparisons. New projects will not have this folder.
++ `mnc/`: DICOM-to-MINC converted data. This is a legacy folder not found in newer projects.
++ `nrrd/`: DICOM-to-nrrd converted data. This is a legacy folder not found in newer projects.
 
 And some other, less organized folders might be there too:
 
@@ -60,41 +60,24 @@ There is no specific organization of this folder, but it is important. Any study
 
 **logs/**
 
-When `run.sh` runs, the logs form the pipelines are placed here. This is a good place to look for clues on why a pipeline might not have produced the correct outputs.
+This folder can be used to hold pipeline logs. These days the logs from a study's nightly datman run can instead be found in `/archive/logs/DATE-run.log`. These logs are also displayed in the QC dashboard on the main study landing page. They should be the first place to check if any data is missing or anything appears incorrect.
 
 **metadata/**
 
-This folder contains a lot of interested information used by `datman` to manage our data. It maps out subject names between old and new schemes, keeps track of bad scans, keeps track of expected data, and more:
+This folder contains a lot of interesting information used by `datman` when managing the project's data.
 
-+ `blacklist.csv`: Contains a list of bad files (at the scan level) that should **not** be exported from XNAT into the raw file formats. These files will not be available for analysis in any form due to data artifacts or incidental findings. A short note will accompany the scan identifying the reason for exclusion.
-+ `greylist.csv`: A list of suspicious files. Not sure if they are OK to analyze or not (this is up to you), but still flagged for some reason. It's a good idea to look at this list before analyzing your data.
-+ `checklist.csv`: Keeps track of the qc outputs that have been looked at, and those that are still outstanding.
-+ `exportinfo.csv`: Uses [regular expressions, or regex](http://www.aivosto.com/vbtips/regex.html) to map between the 'DICOM discription field' of the header to the appropriate 'tag' (e.g., DTI-60, RST; see the [XNAT Naming Convention on the KCNI confluence](https://kcniconfluence.camh.ca/display/NPP/XNAT+Naming+Convention) for more details). The tag is used by our pipelines to figure out which kind of analysis to do for a given dataset, and can be used by you to find all available data:
-
-```
-jdv@davinci:/archive/data-2.0/SPINS/data/nii$ find . -name '*RST*' > ~/list-of-SPINS-restingstate-nii.txt
-jdv@davinci:/archive/data-2.0/SPINS/data/nii$ head ~/list-of-SPINS-restingstate-nii.txt
-./SPN01_MRC_PHA_FBN0054/SPN01_MRC_PHA_FBN0054_RST_04_EPI-3x3x4xTR2-Resting-Eye-closed.nii.gz
-./SPN01_MRC_PHA_FBN0054/SPN01_MRC_PHA_FBN0054_RST_05_Resting-State-test-TR2.4sec.nii.gz
-./SPN01_MRC_PHA_FBN0055/SPN01_MRC_PHA_FBN0055_RST_05_EPI-3x3x4xTR2-Resting-Eye-closed.nii.gz
-./SPN01_MRC_PHA_FBN0055/SPN01_MRC_PHA_FBN0055_RST_06_Resting-State-test-TR2.4sec.nii.gz
-./SPN01_ZHH_PHA_FBN0002/SPN01_ZHH_PHA_FBN0002_RST_03_Resting-State-212.nii.gz
-./SPN01_CMH_0024_01/SPN01_CMH_0024_01_01_RST_08_AxEPI-RestingState.nii.gz
-./SPN01_CMH_0001_01/SPN01_CMH_0001_01_01_RST_07_Ax-RestingState.nii.gz
-./SPN01_CMH_0033_01/SPN01_CMH_0033_01_01_RST_08_AxEPI-RestingState.nii.gz
-./SPN01_MRC_PHA_FBN0044/SPN01_MRC_PHA_FBN0044_RST_04_EPI-3x3x4xTR2-Resting-Eye-closed.nii.gz
-./SPN01_CMH_PHA_FBN0052/SPN01_CMH_PHA_FBN0052_RST_03_Ax-EPI-RestingState.nii.gz
-```
-
-+ `gold_standards/`: a folder structure containing known good `.dcm` files. This is used by a header-comparison tool to ensure that vital settings (e.g., TE, TR, flip angle) are not changing between scans during a scan.
++ `scans.csv`: This file allows us to force datman to use a particular name for a zip file, when the dicom headers have an incorrect ID. If a scan exists in `data/zips` but does not have a correctly-named symlink in `data/dicom` then an entry has to be added to this file to fix it.
++ `blacklist.csv` (Legacy file): This is a file of scans that have failed basic QC. These scans will not appear in any of the data folders and will not be run through pre-processing pipelines. For newer studies, information on blacklisted scans can instead be downloaded from the lab's [QC Dashboard](srv-dashboard.camhres.ca). For any older projects that still contain this file, the file may be missing information on scans that were created later after we introduced the QC dashboard.
++ `checklist.csv` (Legacy file): Keeps track of the qc outputs that have been looked at, and those that are still outstanding. This information is now managed by the lab's [QC Dashboard.](srv-dashboard.camhres.ca) If this file is found in an older project it may be out of date compared to the QC dashboard's database.
++ `gold_standards/`: a folder structure containing known good `.dcm` files. This is used by a header-comparison tool to ensure that vital settings (e.g., TE, TR, flip angle) are not changing between scans.
 + `protocols/`: a list of MRI protocols from CAMH and any other external sites. These should include the expected scans and most of the important MRI settings.
 + `design/`: These are files associated with the experimental design (e.g., stimulus files for fMRI tasks). Meant mostly as a backup of the code.
 
 **qc/**
 
-Contains, for each subject, the full QC output as an `html` page. Also contains `subject-qc.db`, which contains QC metrics as a sqlite database.
+Contains, for each subject, the full QC output as an `html` page. Each folder will also have a 'manifest' file that tells the QC dashboard which metrics to display and how to display them. This allows other pipelines to easily be added to the QC dashboard overview simply by adding them to the subject folder in this directory and updating the manifest file for the subject.
 
-**website/**
+**pipelines/**
 
-Some studies have websites for tracking the QC of the phantom data over time. This is where we store a github pages - formatted (via jekyll) website that we push to github to be rendered as a subdomain of our website: http://imaging-genetics.camh.ca/. For a list of the currently active websites, see here: http://imaging-genetics.camh.ca/database/qc/
+Contains the outputs of all pre-processing pipelines that the lab routinely runs. If you need to work with the outputs of a pipeline and data for a subject (or multiple subjects) is missing you should contact a staff member to have them update the contents.
 
