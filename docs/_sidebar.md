@@ -39,6 +39,7 @@
 - Offboarding
 
   - [Archiving Emails](offboarding/Archiving-emails.md)
+  - [Accessing T4 Slips](offboarding/Accessing-t4s.md)
 
 - Working with the Archive
 
@@ -55,7 +56,7 @@
   - [Renaming CAMH Scans](data/Renaming-CAMH-Scans-with-scans.csv.md)
   - [Dashboard Database](data/Dashboard-Database.md)
 
-- Methods and Softare
+- Methods and Software
 
   - [FreeSurfer](methods/freesurfer.md)
   - [QSIprep-based dMRI Processing](methods/QSIprep_based_DWI_processing.md)
