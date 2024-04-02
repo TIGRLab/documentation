@@ -2,7 +2,7 @@
 
 After leaving CAMH accounts are immediately disabled which can cause problems for users who still need access to T4s and other financial documents.
 
-CAMH provides instructions to access these forms for former employees in [this pdf](/docs/offboarding/access_t4.pdf)
+CAMH provides instructions to access these forms for former employees in [this pdf](https://raw.githubusercontent.com/TIGRLab/documentation/master/docs/offboarding/access_t4.pdf)
 
 <!-- sign-off-sheet:start -->
 <!-- sign-off-cadence:1 year -->
