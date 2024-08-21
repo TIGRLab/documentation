@@ -9,6 +9,7 @@
   - [Getting Help](introduction/Getting-Help.md)
   - [Lab Research](introduction/Lab-research.md)
   - [Remote Access](introduction/Remote-Access.md)
+  - [Longterm Data Storage](introduction/Longterm-Data-Storage.md)
 
 - Technical Skills
 
