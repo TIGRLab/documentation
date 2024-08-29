@@ -8,7 +8,7 @@
 
 [Research portal](http://ishare.camh.ca/sites/rso/Pages/default.aspx). Includes links for room bookings, travel preauths, grant documents, etc.
 
-[CAMH Secure File Transfer (SFT)](filetransfer.camh.ca) allows has strong encryption, automatic receipt notification, and transfer of up to 2GB.
+[CAMH Secure File Transfer (SFT)](https://filetransfer.camh.ca) allows has strong encryption, automatic receipt notification, and transfer of up to 2GB.
 
 [Remote Access](https://remote.camh.ca/vpn/index.html) - CAMH allows access to some services, including a Google Chrome browser that's on the internal network, through their 'remote' portal.
 
