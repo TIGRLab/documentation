@@ -19,13 +19,13 @@ Note that you must be logged in to github to view either of those links.
 
 ## remote.camh.ca
 
-**Required Accounts:** CAMH Account, Lab account, SCC Access
+**Required Accounts:** Lab account, SCC Access, CAMH Account
 
 **Required Software:** [Citrix Receiver](https://www.citrix.com/products/receiver/)
 
 1. Go to https://remote.camh.ca
 2. Login with your CAMH account
-3. Once in, in the 'non-clincal' folder you'll find a shortcut for Google Chrome. If you double click this, and have Citrix Receiver properly installed, it will open a chrome browser that runs on CAMH's internal network.
+3. Once in, in the 'corporate' folder you'll find a shortcut for Google Chrome. If you double click this, and have Citrix Receiver properly installed, it will open a chrome browser that runs on CAMH's internal network.
 4. Choose one of the sections below to complete your login.
 
 #### Jupyterhub
@@ -33,10 +33,10 @@ Note that you must be logged in to github to view either of those links.
 If you need a terminal or plan to use python you can follow these steps to access the jupyterhub.
 
 - In the Chrome window you opened by following the steps above, go to https://jupyter.camh.ca/hub/login
-- Log in with your SCC/TIGRlab account
+- Log in with your SCC/TIGRlab account (your lab account and scc account are the same).
 - Once you're in you should see a 'new' button on the top right. If you click this, at the bottom of the menu there is a 'terminal' option. Clicking this will open a terminal on the SCC.
 
-![](../../_images/jupyter_terminal.png)
+![](../_images/jupyter_terminal.png)
 
 - From here you can work on the SCC or you can ssh into a lab computer with `ssh yourkimelusername@yourmachinename.camhres.ca`
 
@@ -73,4 +73,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Needs update. |
 | Dawn | May 12th, 2023 | Updated contents. |
+| Dawn | Sept 23rd, 2024 | Updated img link, reworded a few things for clarity. |
 <!-- sign-off-sheet:end -->
