@@ -12,3 +12,11 @@ To keep our storage costs low our lab likes to move data that isnt used frequent
 
 2. **Contact a lab employee with a list of files/folders you want**. Once you've found everything you need, send a list of files/folders to either Dawn (Dawn.Smith@camh.ca) or Kevin (Kevin.Witczak@camh.ca). If you can, include the the name of the .sha512 or .ncdu you found them in to make it easier on us :)
 
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| Dawn | Sept 23, 2024 | Added page + review tracking |
+<!-- sign-off-sheet:end -->
