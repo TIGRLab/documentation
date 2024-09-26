@@ -1,6 +1,15 @@
 ### Who this is for
   - Kimel staff members troubleshooting QC/datman issues
 
+## Gold standards
+We use gold standards to make sure the MRI scan parameters aren't changing over time. This section describes how to add gold standards to a study, or update
+
+- First, inside the study's metdata folder, make a 'standards' folder if one doesn't already exist.
+- Next, for each scan site in the study, find one series per tag with correct header parameters.
+- Copy the .json file for each series into the `$STUDY/metadata/standards` folder.
+- Switch to clevis (`sudo su clevis`), load the lab-code module (`module load lab-code`), and run `dm_update_standards.py $STUDY`. This will update the database with the newest gold standards.
+- As long as there were no errors, you're good to go!
+
 ## Missing Scans
 There can be multiple causes for an expected scan (or entire session) to not show up in the dashboard, so it's helpful to start at the origin of the raw data and work your way forwards. If you're not familiar with which Datman scripts the study is using the first step should be to open `/archive/code/config/$STUDY_management.sh` as you debug. If the study you are working with doesn't use a script mentioned, you can skip that step.
 
