@@ -1,20 +1,24 @@
 ### Who this is for
   - Kimel staff members troubleshooting QC/datman issues
 
+-----------------
+
 ## Gold standards
-We use gold standards to make sure the MRI scan parameters aren't changing over time. This section describes how to add gold standards to a study, or update
+We use gold standards to make sure the MRI scan parameters aren't changing over time. This section describes how to add gold standards to a study, or update existing ones.
 
 - First, inside the study's metdata folder, make a 'standards' folder if one doesn't already exist.
-- Next, for each scan site in the study, find one series per tag with correct header parameters.
-- Copy the .json file for each series into the `$STUDY/metadata/standards` folder.
+- Next, for each scan site in the study, find one series per tag with correct header parameters. So if you have two scan sites (CMH1 and CMH2) and two tags (T1 and T2) you should find four gold standards (CMH1-T1, CMH1-T2, CMH2-T1, CMH2-T2).
+- Copy the .json file for each series from the previous step into the `$STUDY/metadata/standards` folder.
 - Switch to clevis (`sudo su clevis`), load the lab-code module (`module load lab-code`), and run `dm_update_standards.py $STUDY`. This will update the database with the newest gold standards.
 - As long as there were no errors, you're good to go!
+
+-----------------
 
 ## Missing Scans
 There can be multiple causes for an expected scan (or entire session) to not show up in the dashboard, so it's helpful to start at the origin of the raw data and work your way forwards. If you're not familiar with which Datman scripts the study is using the first step should be to open `/archive/code/config/$STUDY_management.sh` as you debug. If the study you are working with doesn't use a script mentioned, you can skip that step.
 
 ### [dm_sftp.py] The zip file is not in `/archive/data/$STUDY/data/zips`
-First, make sure the zip file exists on the sftp server.
+First, make sure the zip file exists on the sftp server. Obviously, if the study uploads directly to xnat, you can skip this entire section :)
 
 - Find the value of `FtpServer`, `MrUser`, and `MrFolder` for the study (and optionally, `FtpPort` if the study or site defines it). These may be defined in the main config file for datman `/archive/code/config/tigrlab_config.yaml` or in the study config file in that same folder. The study config overrides the main one, and individual sites override general study configuration, so if a value has been defined multiple times take the 'most specific' value relevant to the session you're looking for.
 - Get the password. By default this will be in a file in `/archive/data/$STUDY/metadata/` named `mrftppass.txt`. But if a study/site defines the value `MrFtpPass` look for a file matching that non-default name instead.
@@ -66,6 +70,8 @@ One thing to be careful of is that sometimes the scan got stuck there because th
 
 ### [dm_xnat_extract.py] The scan is on XNAT, but not in the nii and/or bids folder
 Section under construction, nag me about it if you came here looking for help! - Dawn
+
+-----------------
 
 ## Missing REDCap
 #### 1. Make sure the survey exists on the server.
@@ -133,11 +139,17 @@ Once this is finished, you should be able to re-save the survey again (or re-run
 
 If it's still missing at this point, contact Dawn asap!
 
+-----------------
+
 ## Common Nightly Log Issues
 Section under construction, nag me about it if you came here looking for help! - Dawn
 
+-----------------
+
 ## Header Differences
 Section under construction, nag me about it if you came here looking for help! - Dawn
+
+-----------------
 
 ## Missing Metrics
 Section under construction, nag me about it if you came here looking for help! - Dawn
@@ -149,4 +161,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | Name | Date | Notes |
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+| Dawn | October 7th, 2024 | Reviewed and updated some of contents. |
 <!-- sign-off-sheet:end -->
