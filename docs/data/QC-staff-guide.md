@@ -52,6 +52,9 @@ First, if a difference exists and we expected that scan parameter to change (i.e
 
 If we weren't notified, then the field difference must be dealt with on a case by case basis. Consult with Erin about whether we need to do anything/contact anyone or if we should just update the gold standards or ignore the field etc.
 
+### Handling SliceTiming issues
+Currently, if the TR is less than 1 second we don't care about slice timing issues. If the TR is longer than 1 second, and slice timing differences are reported, consult with Erin about next steps right away!
+
 -----------------
 
 ## Missing Scans
