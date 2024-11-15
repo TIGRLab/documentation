@@ -14,6 +14,46 @@ We use gold standards to make sure the MRI scan parameters aren't changing over 
 
 -----------------
 
+## Header Differences
+Some scans on the dashboard may have a 'header differences' warning label. This occurs when the scan's header values don't match the gold standard's header values. These warning labels shouldn't be ignored! Depending on the type and reason for differences there are several possible fixes, though.
+
+### Removing 'Noise' from the Header Differences
+- If the field being complained about is something we expect to change (e.g. AcquisitionTime) or a field that will only ever have meaningless changes (e.g. capitalization, punctuation changes) then you can completely ignore the field using [Datman's 'IgnoreHeaderFields' setting](http://imaging-genetics.camh.ca/datman/datman_conf.html#gold-standards).
+- If the difference is just a very insignificant variation that we don't need to worry about, then you should use [Datman's 'HeaderFieldTolerance' setting](http://imaging-genetics.camh.ca/datman/datman_conf.html#gold-standards) to silence warnings unless a large (and meaningful) change pops up.
+
+You can update these settings by adding to our defaults in the main config file (`/archive/code/config/tigrlab_config.yaml`) or you can add them in the study config file. If they're added to the study config file, the defaults from the main config file will still be included so you don't need to duplicate field names. Remember: These field names are case sensitive! Copy them exactly from the header differences.
+
+Once the configuration values have been updated you have to update the database (see below) for the dashboard to remove these warnings.
+
+```bash
+# Make sure you're clevis
+sudo su clevis
+# load lab-code and all of dm_qc_report's dependencies
+module load lab-code matlab/R2014a AFNI/2014.12.16 FSL/5.0.10
+# This is safe to run as many times as you need. The --refresh flag will force a recheck of the
+# headers and metadata without modifying files in the QC folder. Because of this it will
+# finish almost instantly as well.
+#
+# Running on the whole study (e.g. dm_qc_report.py --refresh $STUDY) means each session is
+# submitted to the queue.
+#
+# Running a single session (e.g. dm_qc_report.py --refresh $STUDY $SESSION) happens locally.
+dm_qc_report.py --refresh $STUDY
+```
+### Removing 'Missing' Field Warnings
+Dicom header fields that exist in the gold standard, but aren't found in the current scan's dicom headers, will have a 'Missing' warning.
+
+- If the missing field is one we'll never care about you can silence the error by ignoring it as described in the previous section.
+
+- If the 'missing' field exists under a different name in the scan, and it's a field we care about, then you should add a new gold standard (see Gold Standards section) so that we don't accidentally miss meaningful changes to scan parameters.
+
+### Handling Real (or Potentially Real) Differences
+First, if a difference exists and we expected that scan parameter to change (i.e. we were informed about a scanner change), then the solution is to update the gold standard (see Gold Standards section).
+
+If we weren't notified, then the field difference must be dealt with on a case by case basis. Consult with Erin about whether we need to do anything/contact anyone or if we should just update the gold standards or ignore the field etc.
+
+-----------------
+
 ## Missing Scans
 There can be multiple causes for an expected scan (or entire session) to not show up in the dashboard, so it's helpful to start at the origin of the raw data and work your way forwards. If you're not familiar with which Datman scripts the study is using the first step should be to open `/archive/code/config/$STUDY_management.sh` as you debug. If the study you are working with doesn't use a script mentioned, you can skip that step.
 
@@ -146,11 +186,6 @@ Section under construction, nag me about it if you came here looking for help! -
 
 -----------------
 
-## Header Differences
-Section under construction, nag me about it if you came here looking for help! - Dawn
-
------------------
-
 ## Missing Metrics
 Section under construction, nag me about it if you came here looking for help! - Dawn
 
@@ -162,4 +197,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
 | Dawn | October 7th, 2024 | Reviewed and updated some of contents. |
+| Dawn | November 14th, 2024 | Added content to 'Header Differences' section. |
 <!-- sign-off-sheet:end -->
