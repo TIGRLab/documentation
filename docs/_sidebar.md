@@ -62,6 +62,7 @@
   - [FreeSurfer](methods/freesurfer.md)
   - [QSIprep-based dMRI Processing](methods/QSIprep_based_DWI_processing.md)
   - [fMRI Processing](methods/fMRI-Processing.md)
+  - [Downloading Public Data (NDA)](other/Downloading-Public-Data.md)
   - [Software](other/Software.md)
   - [SOP Tracking Documents](other/SOP-Tracking-Documents.md)
   - [Editing Documentation](other/Editing-Documentation.md)
