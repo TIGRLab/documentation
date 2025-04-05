@@ -60,6 +60,7 @@
 - Methods and Software
 
   - [FreeSurfer](methods/freesurfer.md)
+  - [VS Code Setup](methods/VSCode.md)
   - [QSIprep-based dMRI Processing](methods/QSIprep_based_DWI_processing.md)
   - [fMRI Processing](methods/fMRI-Processing.md)
   - [Downloading Public Data (NDA)](other/Downloading-Public-Data.md)
