@@ -21,6 +21,8 @@ After you've clicked the button it should bring up a list of issue templates you
 
 ## Help with CAMH Problems
 
+If you get locked out of your camh account (email etc.) you can use the [self-service password reset](https://adselfserve.camh.ca/) website as long as you enrolled before losing access. Instead of using 'sign in' on the that scroll down a bit and click on the 'Forgot your password?' or 'Account locked out?' option. If you didn't enroll, or the website is not working for you, you must contact service.desk@camh.ca or call extension 6011. 
+
 CAMH has a website for general IT help [available here](http://scotty.camh.ca/) (including info on [how to reset your CAMH password](http://scotty.camh.ca/how-to/reset-your-password)). You must be on the camh network to view these pages. Generally anything you need can be found by searching on insite.camh.net if you're using a computer on the camh network.
 
 Important parts of the site include:
