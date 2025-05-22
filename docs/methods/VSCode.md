@@ -80,6 +80,8 @@ You should now see a terminal window with input prompts. If the prompts don’t 
 
 Once authenticated, you’re connected!
 
+Note that if the machine you're connecting to has a very old operating system, you may see a warning that says something like "The remote host does not meet the prerequisites for running VS Code server". Currently this happens with scclogin.camhres.ca, for example. You best option is to choose a different node, if you can, and suffer through with a traditional non-vscode terminal when you have to use those older nodes. If you have no other choice, though, you can downgrade your VSCode version to 1.98 or earlier, but be aware that this may create a host of other issues and cause a loss of a lot of functionality.
+
 ## Navigating
 
 A major benefit of Remote-SSH is that it allows you to explore remote directories and open terminal sessions from within VS Code.
