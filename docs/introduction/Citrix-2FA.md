@@ -12,9 +12,11 @@ Download and open the "Citrix SSO" app from the Apple Store or the Google Play S
    The app will look like this:
 
    **IOS**
+   
    ![](../_images/citrix_2fa/citrix_apple.png)
 
    **Android**
+   
    ![](../_images/citrix_2fa/citrix_google.png)
 
    **Note:**
@@ -50,40 +52,48 @@ Download and open the "Citrix SSO" app from the Apple Store or the Google Play S
 2. Select "Add New Token" (iOS) or the "+" icon at the bottom of your screen (Android).
 
    **IOS**
+   
    ![](../_images/citrix_2fa/citrix_apple_new_token.png)
 
    **Android**
+   
    ![](../_images/citrix_2fa/citrix_google_new_token.png)
 
-3. A prompt will appear to select either "Scan QR Code". If you select "Scan QR Code", the app will ask for permission to access the phone camera. Select "Yes" or "Agree"
+4. A prompt will appear to select either "Scan QR Code". If you select "Scan QR Code", the app will ask for permission to access the phone camera. Select "Yes" or "Agree"
 
    **IOS**
-   ![](../_images/citrix_2fa/citrix_apple_options.png)
+   
+   ![](../_images/citrix_2fa/citrix_ios_options.png)
 
    **Android**
+   
    ![](../_images/citrix_2fa/citrix_google_options.png)
 
-4. A new screen will appear where you will be able to capture the QR code or manually enter the 26-character code to identify you as a CAMH user.
+6. A new screen will appear where you will be able to capture the QR code or manually enter the 26-character code to identify you as a CAMH user.
 
    **IOS**
-   ![](../_images/citrix_2fa/citrix_apple_qr_scan.png)
+   
+   ![](../_images/citrix_2fa/citrix_ios_qr_scan.png)
 
    **Android**
+   
    ![](../_images/citrix_2fa/citrix_google_qr_scan.png)
 
-5. On your computer, return to the screen with your QR code and 26-character code. On your smartphone, either scan the QR code that appears on your computer, or enter the 26-character code.
+8. On your computer, return to the screen with your QR code and 26-character code. On your smartphone, either scan the QR code that appears on your computer, or enter the 26-character code.
 
    ![](../_images/citrix_2fa/citrix_qr_code.png)
 
-6. That's it! You are now registered on the Citrix SSO app.
+9. That's it! You are now registered on the Citrix SSO app.
 
 ## How to use Citrix SSO to authenticate yourself
 The Citrix SSO mobile app will continuously create a one-time, 6-digit, randomly generated access code. The code is only valid for 30 seconds, after which time, it will randomly generate a new code for you to use.
 
 **IOS**
+
 ![](../_images/citrix_2fa/citrix_ios_token.png)
 
 **Android**
+
 ![](../_images/citrix_2fa/citrix_google_token.png)
 
 To authenticate yourself when accessing the internal CAMH network on your non-CAMH issued laptop or smartphone, enter the following URL using your web browser: https://remote.camh.ca
