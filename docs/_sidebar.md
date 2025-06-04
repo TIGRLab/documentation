@@ -7,6 +7,7 @@
   - [Modules](introduction/Modules.md)
   - [Queue Basics](introduction/Queue-basics.md)
   - [Getting Help](introduction/Getting-Help.md)
+  - [Citrix 2FA](introduction/Citrix-2FA.md)
   - [Lab Research](introduction/Lab-research.md)
   - [Remote Access](introduction/Remote-Access.md)
   - [Longterm Data Storage](introduction/Longterm-Data-Storage.md)
