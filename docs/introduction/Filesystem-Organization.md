@@ -11,6 +11,11 @@ This page will tell you how our files and folders are organized.
 - `/external`: Contains data from publicly-available data sets and data from other hospitals. The sub-folder `admindocs` holds all of the access documents for our public data sets. Some of our public data sets have been moved to Scinet. If this is the case there will be a README file left behind in their folder indicating how to find them.
 - `/archive/resources`: This contains some atlases we have available, some of our clinical data and a guide to using our MRS analysis pipeline.
 
+## The SCC:
+
+From the scc's nodes you can access our system's archive, scratch, projects and quarantine. They're all found in the `/external/rprshnas01/tigrlab` directory.
+
+
 
 <!-- sign-off-sheet:start -->
 <!-- sign-off-cadence:1 year -->
@@ -20,4 +25,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Reviewed contents, looks fine. |
 | Dawn | Sept 23rd, 2024 | Reviewed contents. No updates needed |
+| Dawn | July 29, 2025 | Added the SCC folder location |
 <!-- sign-off-sheet:end -->

@@ -14,7 +14,7 @@ There are also other commands available and various options you can set. You can
 
 ## Accessing our SCC modules
 
-Our lab's modules aren't available by default on the SCC. To add them to the `module avail` list you first need to run `source /KIMEL/tigrlab/quarantine/scc_modules.sh` or `source /KIMEL/tigrlab/quarantine/kimel_modules.sh`. The first command (scc_modules.sh) gives you access to all our of SCC-only modules. These are all guaranteed to work on the SCC, but are probably (not always) more out of date than our lab's modules. The second command (kimel_modules.sh) gives you access to all of the modules that are available on our workstations in the lab. Most of these will work just fine on the SCC, but some may have software dependencies that are missing on the SCC nodes. If there is a module you need that doesnt work on the SCC, or if you need software that doesnt have a module, please let us know and we'll help!
+Our lab's modules aren't available by default on the SCC. To add them to the `module avail` list you first need to run `source /external/rprshnas01/tigrlab/quarantine/scc_modules.sh` or `source /external/rprshnas01/tigrlab/quarantine/kimel_modules.sh`. The first command (scc_modules.sh) gives you access to all our of SCC-only modules. These are all guaranteed to work on the SCC, but are probably (not always) more out of date than our lab's modules. The second command (kimel_modules.sh) gives you access to all of the modules that are available on our workstations in the lab. Most of these will work just fine on the SCC, but some may have software dependencies that are missing on the SCC nodes. If there is a module you need that doesnt work on the SCC, or if you need software that doesnt have a module, please let us know and we'll help!
 
 ## Private Modules
 
@@ -32,4 +32,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
 | Dawn | Sept 23rd, 2024 | Reviewed, no updates needed. |
+| Dawn | July 29, 2025 | Updated the SCC tigrlab paths |
 <!-- sign-off-sheet:end -->

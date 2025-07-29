@@ -77,7 +77,7 @@ Contact People:
 
 System:
 	Dependencies:
-		source /KIMEL/tigrlab/quarantine/scc_modules.sh
+		source /external/rprshnas01/tigrlab/quarantine/scc_modules.sh
 		module load python/3.6_boutiques-0.5.20
 		module load nextflow
 		export NXF_VER=20.10.0

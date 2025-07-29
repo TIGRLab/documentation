@@ -45,7 +45,7 @@ Eg.
 
 ```
 cd . # (without being SSH-ed into a kimel lab computer)
-ln -s /KIMEL/tigrlab/scratch/kimel_user/copied_folder .
+ln -s /external/rprshnas01/tigrlab/scratch/kimel_user/copied_folder .
 ```
 
 NOTE2: If you're on a mac you may find that certain keyboard characters (like the '@' symbol) dont work correctly over Citrix. You may be able to fix this with the following two commands. You'll have to restart Citrix after these changes for them to take effect.
@@ -74,4 +74,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | TIGRLab | April 24th, 2023 | Needs update. |
 | Dawn | May 12th, 2023 | Updated contents. |
 | Dawn | Sept 23rd, 2024 | Updated img link, reworded a few things for clarity. |
+| Dawn | July 29, 2025 | Updated example for symlinking scratch to SCC home. |
 <!-- sign-off-sheet:end -->
