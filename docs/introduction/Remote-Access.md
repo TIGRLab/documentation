@@ -2,11 +2,11 @@
 
 The are several methods that can be used to access our workstations and services from outside of CAMH.
 
-    - The Scinet SSH Tunnel
-    - The SCC SSH Tunnel
-    - Internal website access via remote.camh.ca
-    - Limited terminal access via the jupyterhub
-    - Limited terminal access via the rstudiohub
+- The Scinet SSH Tunnel
+- The SCC SSH Tunnel
+- Internal website access via remote.camh.ca
+- Limited terminal access via the jupyterhub
+- Limited terminal access via the rstudiohub
 
 The most powerful and flexible options are the SSH tunnels, but they require the most initial set up.
 
@@ -75,9 +75,13 @@ sed -e 's/KeyboardLayout=(User Profile)/KeyboardLayout=US/' -i SAVE Config
 
 #### The QC Dashboard
 
+**Required Accounts:** A github account
+
 If you just need to do scan QC, once you've opened a chrome browser on the network by following the 'remote.camh.ca' instructions you can open the lab's QC dashboard by going to http://srv-dashboard.camhres.ca/
 
 #### RStudiohub
+
+**Required Accounts:** A Lab account / SCC access
 
 If you want a terminal and/or plan to use rstudio then, after opening a chrome browser on the network by following the steps in 'remote.camh.ca', go to https://rstudio.camh.ca and login with your scc/lab account.
 
