@@ -35,6 +35,7 @@
   - [Laptops](resources/Laptops.md)
   - [Lab Calendar](resources/Lab-Calendar.md)
   - [Lab Websites](resources/Lab-websites.md)
+  - [CAMH Stat Holidays](resources/stat-holidays.md)
   - [CAMH Websites](resources/CAMH-resources.md)
   - [Affiliations](resources/Affiliations.md)
 
