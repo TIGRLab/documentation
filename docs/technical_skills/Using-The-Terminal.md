@@ -6,6 +6,8 @@ A great resource for learning how to use linux and the command line is ['Linux J
 
 In addition to 'Linux Journey' there's also this [Linux tutorial website](http://www.ee.surrey.ac.uk/Teaching/Unix/) which covers some topics not touched on and does a good job of explaining concepts.
 
+There's also the [software-carpentry lessons](https://software-carpentry.org/lessons/) which cover the command line, git, R, and other useful topics and are written specifically for data scientists (rather than computer scientists).
+
 Some useful pro-tips:
 
 1. You can open a terminal with the shortcut ctrl + alt + t

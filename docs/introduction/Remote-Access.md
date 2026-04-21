@@ -16,7 +16,7 @@ If you need to find the name or IP address of a workstation that you can connect
 
 **Required Accounts:** Lab account, SCC Access, SciNet account
 
-You can request SciNet access by following [these instructions](https://github.com/TIGRLab/admin/wiki/Setting-Up-Lab-Access#getting-scinet-access) (must be logged in to github to view). Your lab username/password should automatically grant you access to the SCC now, but if you find you can't log in there reach out to Dawn or Kevin for assistance.
+You can request SciNet access by following [these instructions](https://github.com/TIGRLab/admin/wiki/Setting-Up-Lab-Access#getting-scinet-access) (must be logged in to github to view). Your lab username/password should automatically grant you access to the SCC now (i.e. no extra request form needed), but if you find you can't log in there reach out to Dawn or Kevin for assistance.
 
 Once you have all the required accounts, you can set up the ssh tunnel by following these instructions:
 
@@ -49,7 +49,7 @@ The instructions to request access to this tunnel and configure it [are here](ht
 If you need a terminal inside CAMH or plan to use python you can follow these steps to access the jupyterhub.
 
 - In the Chrome window you opened by following the steps above, go to https://jupyter.camh.ca/hub/login
-- Log in with your SCC/TIGRlab account (your lab account and scc account are the same).
+- Log in with your SCC/TIGRlab account (the account use use to log into our workstations).
 - Once you're in you should see the launcher panel, as soon in the image below. Just choose the 'terminal' option to open a terminal on the SCC.
 
 ![](../_images/jupyter_terminal.png)
@@ -73,12 +73,6 @@ cd $HOME/Library/Application\ Support/Citrix\ Receiver
 sed -e 's/KeyboardLayout=(User Profile)/KeyboardLayout=US/' -i SAVE Config
 ```
 
-#### The QC Dashboard
-
-**Required Accounts:** A github account
-
-If you just need to do scan QC, once you've opened a chrome browser on the network by following the 'remote.camh.ca' instructions you can open the lab's QC dashboard by going to http://srv-dashboard.camhres.ca/
-
 #### RStudiohub
 
 **Required Accounts:** A Lab account / SCC access
@@ -88,6 +82,12 @@ If you want a terminal and/or plan to use rstudio then, after opening a chrome b
 Once you're logged in you can open a terminal on the scc by clicking on the 'Tools' menu, and then 'Terminal' -> 'New Terminal'.
 
 NOTE: You can follow the same symlinking procedure as in the Jupyterhub access section through the "terminal" tab on rstudio to copy your files over to the current directory so you can work on them
+
+#### The QC Dashboard
+
+**Required Accounts:** A github account
+
+If you just need to do scan QC, once you've opened a chrome browser on the network by following the 'remote.camh.ca' instructions you can open the lab's QC dashboard by going to http://srv-dashboard.camhres.ca/
 
 <!-- sign-off-sheet:start -->
 <!-- sign-off-cadence:1 year -->
@@ -100,4 +100,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | Dawn | Sept 23rd, 2024 | Updated img link, reworded a few things for clarity. |
 | Dawn | July 29, 2025 | Updated example for symlinking scratch to SCC home. |
 | Dawn | Oct 29, 2025 | Updated sections, added SCC tunnel instructions. |
+| Dawn | Apr 21, 2026 | Reviewed for accuracy, minor tweaks. |
 <!-- sign-off-sheet:end -->

@@ -1,6 +1,6 @@
 # Queue Basics
 
-This page gives an overview of what a queue is and the basics of how it works. If you're looking for information on the queues that are available to us and how to access them [see here](/resources/Compute-Clusters). If you're looking for documentation for our queue [see here](https://github.com/TIGRLab/TIGRSlurm-Docs).
+This page gives an overview of what a queue is and the basics of how it works. If you're looking for information on the computer clusters / queues that are available to us and how to access them [see here](/resources/Compute-Clusters). If you're looking for documentation for our queue [see here](https://github.com/TIGRLab/TIGRSlurm-Docs).
 
 ## What the heck is a queue anyway?
 
@@ -12,7 +12,7 @@ The queue master can then automatically assign these jobs to other machines in t
 
 ![](../_images/02_how_queues_work.png)
 
-The queue master also gets periodic updates from each of its worker machines. If a machine gets turned off, or fails, or if something goes wrong with the job itself, the queue master will receive this info and can relay status updates to users.
+The queue master also gets periodic updates from each of its worker machines. If a machine gets turned off, or fails, or if something goes wrong with the job itself, the queue master will receive this info and can relay status updates to users. Sometimes it can also automatically reschedule the job to another machine when a failure has interrupted it.
 
 ![](../_images/03_how_queues_work.png)
 
@@ -21,7 +21,7 @@ The queue master also gets periodic updates from each of its worker machines. If
 - When you submit a job it may run on a completely different machine than you expect. If you submit a bunch, each job could be running on a different computer.
 - If your job takes any input files you have to read them from somewhere accessible to every machine (/projects or /scratch or /archive in the case of our lab's queue or the SCC's queue). If your script has any outputs you should also put them in a globally accessible place or your outputs will get 'stuck' on whatever machine the job ran on.
 - If your job is using anything at all that is in your home folder it will fail or behave unexpectedly (home folders are local to each machine, and therefore different on every computer).
-- If the queue master goes down for any reason, new jobs can't be submitted or assigned.
+- If the queue master goes down for any reason, new jobs can't be submitted or assigned. Jobs that started before the queue master went down will continue running but you won't be able to get status updates about the job.
 
 
 <!-- sign-off-sheet:start -->

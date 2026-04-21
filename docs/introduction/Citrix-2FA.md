@@ -1,6 +1,6 @@
 ## Citrix SSO (2FA) Token setup Instructions
 
-Follow the steps below to install, configure and use the Citrix SSO application (app):
+In order to remotely access your CAMH email and services like remote.camh.ca, you must first configure 2-factor authentication via Citrix's "Citrix SSO" app. The steps below explain how to set it up. They're a copy of CAMH's official instructions.
 
 Note: Citrix SSO app needs to be configured while in Canada. Attempt to configure/reprovision outside Canada will fail.
 
@@ -12,11 +12,11 @@ Download and open the "Citrix SSO" app from the Apple Store or the Google Play S
    The app will look like this:
 
    **IOS**
-   
+
    ![](../_images/citrix_2fa/citrix_apple.png)
 
    **Android**
-   
+
    ![](../_images/citrix_2fa/citrix_google.png)
 
    **Note:**
@@ -52,31 +52,31 @@ Download and open the "Citrix SSO" app from the Apple Store or the Google Play S
 2. Select "Add New Token" (iOS) or the "+" icon at the bottom of your screen (Android).
 
    **IOS**
-   
+
    ![](../_images/citrix_2fa/citrix_apple_new_token.png)
 
    **Android**
-   
+
    ![](../_images/citrix_2fa/citrix_google_new_token.png)
 
 4. A prompt will appear to select either "Scan QR Code". If you select "Scan QR Code", the app will ask for permission to access the phone camera. Select "Yes" or "Agree"
 
    **IOS**
-   
+
    ![](../_images/citrix_2fa/citrix_ios_options.png)
 
    **Android**
-   
+
    ![](../_images/citrix_2fa/citrix_google_options.png)
 
 6. A new screen will appear where you will be able to capture the QR code or manually enter the 26-character code to identify you as a CAMH user.
 
    **IOS**
-   
+
    ![](../_images/citrix_2fa/citrix_ios_qr_scan.png)
 
    **Android**
-   
+
    ![](../_images/citrix_2fa/citrix_google_qr_scan.png)
 
 8. On your computer, return to the screen with your QR code and 26-character code. On your smartphone, either scan the QR code that appears on your computer, or enter the 26-character code.

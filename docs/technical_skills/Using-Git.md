@@ -4,6 +4,8 @@
 
 Git is a tool to help track changes in your work. It was originally created for code but can be used with plain old text and other files as well (as long as they're not too large, i.e. trying to commit nii files is a bad idea). The basic idea is that as you change your work you periodically 'commit' changes you want to keep. You can then 'checkout' these previous commits if you later decide you want to undo some changes and you can refer back to the messages you wrote when you committed them to figure out why you made your changes. Git also makes it easier to share your work with other people because it makes it easy to copy ('clone') someones work and later merge it back with the original if you need to. Because of this, git has become the standard for programmers and is often used by people working collaboratively on written documents.
 
+Software carpentry has a [handy tutorial](https://swcarpentry.github.io/git-novice/) to learn to use it. Below we also have a bit of a skimmable explanation of how it works.
+
 ## Contents
 
 - [Using Git](#using-git)

@@ -21,18 +21,18 @@ After you've clicked the button it should bring up a list of issue templates you
 
 ## Help with CAMH Problems
 
-If you get locked out of your camh account (email etc.) you can use the [self-service password reset](https://adselfserve.camh.ca/) website as long as you enrolled before losing access. Instead of using 'sign in' on the that scroll down a bit and click on the 'Forgot your password?' or 'Account locked out?' option. If you didn't enroll, or the website is not working for you, you must contact service.desk@camh.ca or call extension 6011. 
+If you get locked out of your camh account (email, etc.) you can use the [self-service password reset](https://adselfserve.camh.ca/) website as long as you enrolled before losing access. Instead of using 'sign in' on that page scroll down a bit and click on the 'Forgot your password?' or 'Account locked out?' option. If you didn't enroll, or the website is not working for you, you must contact service.desk@camh.ca or call extension 6011.
 
-CAMH has a website for general IT help [available here](http://scotty.camh.ca/) (including info on [how to reset your CAMH password](http://scotty.camh.ca/how-to/reset-your-password)). You must be on the camh network to view these pages. Generally anything you need can be found by searching on insite.camh.net if you're using a computer on the camh network.
+CAMH has a website for general IT help [available here](http://scotty.camh.ca/) (including info on [how to reset your CAMH password](http://scotty.camh.ca/how-to/reset-your-password)). You must be on the camh network to view these pages. Generally anything you need can be found by searching on https://camh.sharepoint.com/ if you're using a computer on the camh network.
 
 Important parts of the site include:
 
-- Maintenance (ext 30000): [Info about their services here](http://insite.camh.net/Services_for_Staff/Maintenance/Maintenance7448.html)
-- IMG (ext 6011): [Info about their services here](http://insite.camh.net/Services_for_Staff/Service_Desk/Requesting_IMG_Services/requesting_img_services11017.html)
+- Maintenance (ext 30000): [Info about their services here](https://camh.sharepoint.com/sites/BuildingsMaintenance/SitePages/Maintenance.aspx)
+- IMG (ext 6011): [Info about their services here](http://insite.camh.net/Services_for_Staff/Service_Desk/Requesting_IMG_Services/requesting_img_services11017.html). On sharepoint the new IMG request form can be accessed [from here.](http://connect/sites/IMGR/OPR/_layouts/15/start.aspx#/SitePages/IMGReqHome.aspx)
 
 ## Help with the SCC
 
-The SCC documentation [can be found here](https://kcniconfluence.camh.ca/pages/viewpage.action?pageId=29294847). If you're having trouble logging in you can first contact Dawn for help. If you need a module to be made available on the SCC you can talk to Dawn or Kevin. Other technical problems should go directly to the SCC's help email: scc_support@camh.ca
+The SCC documentation [can be found here](https://kcniconfluence.camh.ca/pages/viewpage.action?pageId=29294847). You can log in with your camh account. If you're having trouble logging in you can first contact Dawn for help. If you need a module to be made available on the SCC you can talk to Dawn or Kevin. Other technical problems, like those relating to SCC queue job issues or node outages, should go directly to the SCC's help email: scc_support@camh.ca
 
 ## Help with Scinet
 
@@ -46,4 +46,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 |------|------|-------|
 | Dawn | May 8th, 2023 | Updated links and references to employees that have left. |
 | Dawn | Sept 23rd, 2024| Reviewed contents, no updates needed. |
+| Dawn | Apr 21, 2026 | Reviewed contents, added updated links. |
 <!-- sign-off-sheet:end -->
