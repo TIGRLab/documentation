@@ -16,7 +16,7 @@ If you need to find the name or IP address of a workstation that you can connect
 
 **Required Accounts:** Lab account, SCC Access, SciNet account
 
-You can request SciNet access by following [these instructions](https://github.com/TIGRLab/admin/wiki/Setting-Up-Lab-Access#getting-scinet-access) (must be logged in to github to view). Your lab username/password should automatically grant you access to the SCC now (i.e. no extra request form needed), but if you find you can't log in there reach out to Dawn or Kevin for assistance.
+You can request SciNet access by following [these instructions](https://github.com/TIGRLab/admin/wiki/Getting-SciNet-Access) (must be logged in to github to view). Your lab username/password should automatically grant you access to the SCC now (i.e. no extra request form needed), but if you find you can't log in there reach out to Dawn or Kevin for assistance.
 
 Once you have all the required accounts, you can set up the ssh tunnel by following these instructions:
 
