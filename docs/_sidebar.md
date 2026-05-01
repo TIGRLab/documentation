@@ -3,6 +3,7 @@
 - Introduction/Onboarding
 
   - [Start Here](introduction/New-TIGRLab-Member-To-Do-List.md)
+  - [Lab Manual](https://docs.google.com/document/d/1jRI-8jB2alJVqDepFKpPQOjBeTUFhu_o/edit)
   - [Filesystem Organization](introduction/Filesystem-Organization.md)
   - [Modules](introduction/Modules.md)
   - [Queue Basics](introduction/Queue-basics.md)
