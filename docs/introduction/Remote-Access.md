@@ -4,6 +4,7 @@ The are several methods that can be used to access our workstations and services
 
 - The Scinet SSH Tunnel
 - The SCC SSH Tunnel
+- The SCC Ondemand portal
 - Internal website access via remote.camh.ca
 - Limited terminal access via the jupyterhub
 - Limited terminal access via the rstudiohub
@@ -30,6 +31,14 @@ Note that you must be logged in to github to view either of those links.
 **Required Accounts:** Lab account, SCC Access.
 
 The instructions to request access to this tunnel and configure it [are here](https://github.com/TIGRLab/admin/blob/master/pdfs/Accessing%20the%20SCC%20with%20MobaXterm%20using%20a%20Jump%20Host%20-%20Short%20Version%20(No%20screenshots)%20-%20Enrollment%20Email%20version.pdf) (must be logged in to github to view).
+
+## SCC Ondemand Portal
+
+**Required Accounts:** Lab account, SCC Access.
+
+Sometime in 2026 the SCC added an ondemand portal. This means you can [login here](https://ondemand.camh.ca/pun/sys/dashboard) from any browser, even off network, and gain access to a terminal on the scc, a graphical desktop on the scc, the jupyterhub, and the rstudiohub, all without having to install any extra tools.
+
+The only thing you need to get access is to have the CAMH SCC 2-factor authentication. This is the same 2FA setup as the one to get access to the CAMH SSH tunnel so if you've already set that up you're good to go! It should appear in your duo app as something like 'camh on demand'. If you do not yet have this it's worth going through the tunnel setup instructions in the previous section first so you unlock access to both remote routes.
 
 ## remote.camh.ca
 
@@ -101,4 +110,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | Dawn | July 29, 2025 | Updated example for symlinking scratch to SCC home. |
 | Dawn | Oct 29, 2025 | Updated sections, added SCC tunnel instructions. |
 | Dawn | Apr 21, 2026 | Reviewed for accuracy, minor tweaks. |
+| Dawn | July 16, 2026 | Added info about scc ondemand portal. |
 <!-- sign-off-sheet:end -->
