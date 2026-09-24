@@ -1,23 +1,19 @@
 ## MR Database Information
-Neuroimaging data collected during the study will be stored in an **online MRI Database (XNAT) server** hosted by the Centre for Addiction and Mental Health (CAMH)’s **Krembil Centre for Neuroinformatics (KCNI)**. The following information can be used to access the database:
+Neuroimaging data collected during the study will be stored in an **online MRI Database (XNAT) server** hosted by the Centre for Addiction and Mental Health (CAMH)’s **Krembil Centre for Neuroinformatics (KCNI)**.
 
-**Database:** https://xnat.camh.ca
+**URL:** https://xnat.camh.ca
 
-**Documentation:** https://kcniconfluence.camh.ca/display/NPP/
+**KCNI Documentation:** https://kcniconfluence.camh.ca/display/NPP/
 
-**Contact:**  tigrlab@camh.ca
+Contact information for issues etc. and other documentation can be found on the home page before logging in.
 
 ## Accessing the MRI Database
-Project members requiring access to the KCNI XNAT instance will need to complete an [online training course](https://kcniconfluence.camh.ca/display/NPP/XNAT+Workshop) and then [request an XNAT user account](https://kcniconfluence.camh.ca/pages/viewpage.action?pageId=6455465#XNATIntroduction-NewUserRequest).
+For details on how to:
+  - Get login access for a new account
+  - Get access to an existing project
+  - Make a new a new project
 
-
-**Details on User Request Form:**
-1. For the first question click **XNAT**.
-2. Set **Aristotle Voineskos** as the primary investigator, the associated e-mail is aristotle.voineskos@camh.ca.
-3. The Neuroinformatics platform code is the XNAT Project ID for your associated site. Refer to the naming conventions section below for more details.
-
-**NOTE:**
-The only browsers that are currently supported are FireFox, Microsoft Edge, and Safari. Internet explorer users will run into issues.
+Consult the instructions on the [landing page of XNAT](https://xnat.camh.ca).
 
 ## XNAT Naming Convention
 In order to facilitate automatic data management, imaging data uploaded to XNAT must adhere to a common naming convention as implemented by the Krembil Neuroinformatics Institute (KCNI) Platform at CAMH. Further information can be found in the following links:
@@ -42,8 +38,7 @@ Data stored in XNAT adheres to the following hierarchy:
 
 ## XNAT Data Upload Procedure
 
-XNAT data upload must occur **as soon as possible** after the MR scanning session.
-
+XNAT data upload must occur **as soon as possible** after the MR scanning session. Scans acquired at CAMH can be automatically uploaded to XNAT. Contact the XNAT server admin (or Dawn) to set this up for new projects.
 
 ### Uploading DICOM Data
 
@@ -67,4 +62,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | Name | Date | Notes |
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+| Dawn | September 24th, 2026 | Made some minor updates, removed broken links. |
 <!-- sign-off-sheet:end -->
