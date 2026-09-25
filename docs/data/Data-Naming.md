@@ -4,6 +4,8 @@
 
 This document describes a naming protocol for our data files that explicitly indicates who, what, when, and where the data was acquired. The naming protocol is inspired by the  [OBI naming scheme](https://github.com/TIGRLab/spins/raw/master/docs/guides/spred-upload-tutorial-v1.5.pdf).
 
+Note that we also, in some contexts, use [KCNI's naming scheme](https://kcniconfluence.camh.ca/spaces/NPP/pages/6455472/KCNI+Naming+Convention) (extremely similar, also inspired by OBI) and [the BIDS naming scheme](https://bids.neuroimaging.io/index.html)
+
 # Data Naming Protocol
 
 ## Standard Prefix
