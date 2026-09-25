@@ -8,9 +8,9 @@ We use gold standards to make sure the MRI scan parameters aren't changing over 
 
 - First, inside the study's metdata folder, make a 'standards' folder if one doesn't already exist.
 - Next, for each scan site in the study, find one series per tag with correct header parameters. So if you have two scan sites (CMH1 and CMH2) and two tags (T1 and T2) you should find four gold standards (CMH1-T1, CMH1-T2, CMH2-T1, CMH2-T2).
-- Copy the .json file for each series from the previous step into the `$STUDY/metadata/standards` folder.
+- Copy the .json file for each series you identified in the previous step into the `$STUDY/metadata/standards` folder.
 - Switch to clevis (`sudo su clevis`), load the lab-code module (`module load lab-code`), and run `dm_update_standards.py $STUDY`. This will update the database with the newest gold standards.
-- As long as there were no errors, you're good to go!
+- As long as there were no errors, you're good to go! If there were errors, reach out to Dawn for help.
 
 -----------------
 
@@ -21,16 +21,22 @@ Some scans on the dashboard may have a 'header differences' warning label. This 
 - If the field being complained about is something we expect to change (e.g. AcquisitionTime) or a field that will only ever have meaningless changes (e.g. capitalization, punctuation changes) then you can completely ignore the field using [Datman's 'IgnoreHeaderFields' setting](http://imaging-genetics.camh.ca/datman/datman_conf.html#gold-standards).
 - If the difference is just a very insignificant variation that we don't need to worry about, then you should use [Datman's 'HeaderFieldTolerance' setting](http://imaging-genetics.camh.ca/datman/datman_conf.html#gold-standards) to silence warnings unless a large (and meaningful) change pops up.
 
-You can update these settings by adding to our defaults in the main config file (`/archive/code/config/tigrlab_config.yaml`) or you can add them in the study config file. If they're added to the study config file, the defaults from the main config file will still be included so you don't need to duplicate field names. Remember: These field names are case sensitive! Copy them exactly from the header differences.
+You can update these settings by either:
+  - Adding them to the study-specific settings file (i.e. `/archive/code/config/$STUDY_settings.yml`), if they're unlikely to be relevant to any other study.
+  - Updating our site-wide defaults in the main config file (`/archive/code/config/tigrlab_config.yaml`), if they might benefit multiple studies.
+
+Datman merges settings from both locations so you don't need to duplicate entries that are already in `tigrlab_config.yaml`. Remember: Field names are case-sensitive. Copy them exactly from the header differences/dicom headers.
 
 Once the configuration values have been updated you have to update the database (see below) for the dashboard to remove these warnings.
 
 ```bash
 # Make sure you're clevis
 sudo su clevis
+
 # load lab-code and all of dm_qc_report's dependencies
 module load lab-code matlab/R2014a AFNI/2014.12.16 FSL/5.0.10
-# This is safe to run as many times as you need. The --refresh flag will force a recheck of the
+
+# The below command is safe to run as many times as you need. The --refresh flag will force a recheck of the
 # headers and metadata without modifying files in the QC folder. Because of this it will
 # finish almost instantly as well.
 #
@@ -45,10 +51,10 @@ Dicom header fields that exist in the gold standard, but aren't found in the cur
 
 - If the missing field is one we'll never care about you can silence the error by ignoring it as described in the previous section.
 
-- If the 'missing' field exists under a different name in the scan, and it's a field we care about, then you should add a new gold standard (see Gold Standards section) so that we don't accidentally miss meaningful changes to scan parameters.
+- If the 'missing' field exists under a different name in the scan, and it's a field we care about, then you should add a new gold standard (see [Gold Standards](#gold-standards)) so that we don't accidentally miss meaningful changes to scan parameters.
 
 ### Handling Real (or Potentially Real) Differences
-First, if a difference exists and we expected that scan parameter to change (i.e. we were informed about a scanner change), then the solution is to update the gold standard (see Gold Standards section).
+First, if a difference exists and we expected that scan parameter to change (i.e. we were informed about a scanner change), then the solution is to update the gold standard (see [Gold Standards](#gold-standards)).
 
 If we weren't notified, then the field difference must be dealt with on a case by case basis. Consult with Erin about whether we need to do anything/contact anyone or if we should just update the gold standards or ignore the field etc.
 
@@ -61,7 +67,9 @@ Currently, if the TR is less than 1 second we don't care about slice timing issu
 There can be multiple causes for an expected scan (or entire session) to not show up in the dashboard, so it's helpful to start at the origin of the raw data and work your way forwards. If you're not familiar with which Datman scripts the study is using the first step should be to open `/archive/code/config/$STUDY_management.sh` as you debug. If the study you are working with doesn't use a script mentioned, you can skip that step.
 
 ### [dm_sftp.py] The zip file is not in `/archive/data/$STUDY/data/zips`
-First, make sure the zip file exists on the sftp server. Obviously, if the study uploads directly to xnat, you can skip this entire section :)
+If the data for the study/site are uploaded directly to XNAT by external scan sites, this script will not be used and you should skip ahead to the section on [what to do when XNAT is missing the scan](#the-scan-is-missing-from-XNAT).
+
+First, make sure the zip file exists on the sftp server.
 
 - Find the value of `FtpServer`, `MrUser`, and `MrFolder` for the study (and optionally, `FtpPort` if the study or site defines it). These may be defined in the main config file for datman `/archive/code/config/tigrlab_config.yaml` or in the study config file in that same folder. The study config overrides the main one, and individual sites override general study configuration, so if a value has been defined multiple times take the 'most specific' value relevant to the session you're looking for.
 - Get the password. By default this will be in a file in `/archive/data/$STUDY/metadata/` named `mrftppass.txt`. But if a study/site defines the value `MrFtpPass` look for a file matching that non-default name instead.
@@ -75,13 +83,13 @@ First, make sure the zip file exists on the sftp server. Obviously, if the study
 
 - Navigate to the folder matching `MrFolder` and look for the scan. You can use normal shell commands like `cd` and `ls`.
 
-If the zip file is not in the expected folder (`MrFolder`) check any other folders the sftp user has access to. Occasionally scans might start being put in a new folder without us being notified.
+  If the zip file is not in the expected folder (`MrFolder`) check any other folders the sftp user has access to. Occasionally scans might start being put in a new folder without us being notified. Often when this happens the folder will be relatively similarly named to the original directory.
 
-- If you find it in a new folder, update the study config file's `MrFolder` value. This setting can accept a list of folder names or you can give it a regular expression. For example, for the study TAY you could set `MrFolder: [TAYS1MR, TAYS2MR]` or `MrFolder: TAYS*1MR`. The latter would be preferable if it's possible there may be future TAYS#MR style folders and the former is preferable if there may be similarly named folders that should not be pulled from.
+- If you find it in a new folder, update the study config file's `MrFolder` value. This setting can accept a list of folder names or you can give it a regular expression. For example, for the study TAY you could set `MrFolder: [TAYS1MR, TAYS2MR]` or `MrFolder: TAYS*MR`. The latter would be preferable if it's possible there may be future TAYS#MR style folders that definitely belong to TAY but the former is preferable if there may be similarly named folders on the server that are unrelated and should not be pulled from.
 
 If the scan does not exist anywhere on the server and it has been more than 48 hours, contact the scan site to see why it has not been uploaded to the MR server.
 
-If it turns out the scan is exactly where it's expected to be, try manually running dm_sftp with verbose logging to identify errors. If the scan still does not appear in `/archive/data/$STUDY/data/zips` when the script completes you may have a more serious/complicated issue that should be kicked up the chain for debugging.
+If it turns out the scan is exactly where it's expected to be, try manually running dm_sftp with verbose logging to identify errors. If the scan still does not appear in `/archive/data/$STUDY/data/zips` when the script completes you may have a more serious/complicated issue that should be kicked up the chain for debugging (i.e. reach out to Dawn).
 
   ```bash
   # You should do this from tigrsrv and you should be user clevis
@@ -92,11 +100,13 @@ If it turns out the scan is exactly where it's expected to be, try manually runn
 
 ### [dm_link.py] The scan is in the zips folder, but not in `/archive/data/$STUDY/data/dicom`
 
-This is likely a result of dm_link.py not being able to assign a valid ID to the session. If this is the case, you'll see an error message in the nightly log like this one: `dm_link.py - $STUDY - ERROR - Scanid not found for archive: ${the zip file you're investigating}` or a warning like this one `dm_link.py - $STUDY - WARNING - ${the zip file you're investigating}: ${PatientName} (header PatientName) not valid scan ID`
+This is likely a result of dm_link.py not being able to assign a valid ID to the session. If this is the case, you'll see an error message when you run the script, or in the nightly log, like this one: `dm_link.py - $STUDY - ERROR - Scanid not found for archive: ${the zip file you're investigating}` or a warning like this one `dm_link.py - $STUDY - WARNING - ${the zip file you're investigating}: ${PatientName} (header PatientName) not valid scan ID`.
 
 To fix this, you must manually assign the correct ID in `/archive/data/$STUDY/metadata/scans.csv`. Enter the zip file's name (minus the file extension) in the first column, the correct session ID for this scan in the second column, the value of the PatientName field from the dicom headers in the third field (get this from the warning message or the dicom headers) and the StudyID in the final column (get this from the 'Ex#####' part of the zip file name or the dicom headers).
 
-To check that you've updated it correctly, you should run dm_link.py to see if the error disappears.
+Note that if the zip file name contains spaces, the entry in scans.csv should omit white space (e.g. `zip file     1.zip` should be entered into scans.csv as `zipfile1` not `zip file     1`).
+
+To check that you've updated it correctly, you should run dm_link.py to see if the error disappears. If the error continues, follow up with Dawn for help.
 
 ```bash
 # Should run this as user clevis
@@ -111,8 +121,62 @@ If the session ID appears in this list select it, click details (on the right), 
 
 One thing to be careful of is that sometimes the scan got stuck there because there are multiple UIDs present in the same zip file. Sometimes this happens with the processed images / 3d saved state processed images. To tell if that happened here check to see if the session ID is in the pre-archive twice with the same upload date. If you click on each they should contain a different list of series (one will have most of the scans and the other just a few processed scans). If this is the case archive the main scan data first and then archive the smaller set of data and dismiss the error about the different UIDs. If you fail to merge in both dm_xnat_upload.py will continue to try to upload the zip file every night due to the missing files.
 
+### The scan is missing from XNAT
+This section is relevant only when we aren't responsible for the upload (i.e. the previous scripts aren't in use for this particular study or scan site).
+
+- If the scan happened at CAMH, odds are it's being uploaded by the direct-to-xnat pipeline run by KCNI. Missing data should therefore be reported to them. The current XNAT admin as of writing this is Ricky Wong. You can also check the main landing page of xnat (before you login) for the 'support contacts' listed at the bottom of the page if he is unavailable.
+
+- If the scan is for an external site, where an RA is responsible for uploading the data to XNAT for us, you should reach out to the RA directly and ask them to re-upload or investigate.
+
 ### [dm_xnat_extract.py] The scan is on XNAT, but not in the nii and/or bids folder
-Section under construction, nag me about it if you came here looking for help! - Dawn
+There are a variety of issues that can cause this depending on how the data are being extracted. Usually we launch the extract scripts from `/archive/code/bin/run_extract.sh` now, instead of the study-specific management script, to better paralellize runs and to avoid letting XNAT hold up the rest of the nightly scripts, so check there if you need to see how a particular study is being extracted.
+
+- If the `/archive/data/$STUDY/data/bids` dir is empty:
+
+  - If the study's settings file (`/archive/code/config/$STUDY_settings.yml`) contains an `XnatPipelines` block with a 'BIDS' entry, that means its bids outputs are being created on XNAT and then downloaded by us.
+
+    - Check the session on xnat. The outputs should reside in the session's resources directory (Subject -> experiment -> 'manage files' on the right hand menu). You'd usually expect to see a 'BIDS' directory under 'Resources'
+    - If the outputs are missing, scroll down to the 'History' section and look for a 'dcm2bids' related entry. If you hover and click the eye icon you can see detailed information about the job if there was a failure. You may be able to diagnose the issue yourself.
+    - If there are no jobs at all for dcm2bids reach out to Dawn. It's possible XNAT is not properly automatically launching them on upload.
+    - If most of the outputs exist, but one or more series are missing, odds are the dcm2bids config file needs to be updated to match the missing series properly.
+      - Update the config copy in `/archive/data/$STUDY/metadata/dcm2bids.json`
+      - Test the new settings file locally with a session or two to make sure it looks ok. [This page has some helpful info for testing](https://github.com/TIGRLab/admin/wiki/Exporting-to-BIDs).
+      - Once you've confirmed the settings file is correct, update the copy used by XNAT. Project home page -> 'manage files' -> BIDS -> 'config.json' is where it's stored. Delete the file and reupload the archive copy under the same name in the exact same location (if you change the name or location the container will fail to find it).
+      - You can then relaunch the dcm2bids job for the failed session. Go to the experiment page and look for 'Run containers' at the bottom of the menu on the right. Click the dcm2bids container and 'Run Container'.
+
+      If the BIDS outputs already existed on xnat for the session, but still aren't in `/archive/data/$STUDY/data/bids` run the script manually to see if any errors are listed.
+
+      ```bash
+       # As usual, you must be clevis and load the lab-code module
+       sudo su clevis
+       module load lab-code
+       dm_xnat_extract.py --use-dcm2bids $STUDY $SESSION_ID
+      ```
+      If there are errors of any kind, or a re-run still doesn't produce errors, or you run into any other problems, reach out to Dawn for help.
+
+  - If `/archive/code/config/bin/run_extract.sh` or `/archive/code/config/$STUDY_management.sh` shows that we're running bids locally for the study:
+
+    - If most of the outputs exist, then it's likely a dcm2bids configuration issue. Probably the contents are not correctly matching the scan(s) that are missing. By default we keep the config files in `/archive/data/$STUDY/metadata/dcm2bids.json`, but you should double check the `$STUDY_management.sh` or `run_extract.sh` script because some studies use one config file per scan site or store theres in an unusual place.
+    - [This page has some helpful info](https://github.com/TIGRLab/admin/wiki/Exporting-to-BIDs) for updating and testing the dcm2bids configuration.
+    - If an entire session is missing from the bids dir try to run the script manually first to check for errors:
+      ```bash
+       # As usual, you must be clevis and load the lab-code module
+       sudo su clevis
+       module load lab-code
+       dm_xnat_extract.py --use-dcm2bids $STUDY $SESSION_ID
+      ```
+
+    If a manual run, and configuration file updates don't fix the issue, reach out to Dawn for help!
+
+  - If `/archive/code/config/bin/run_extract.sh` or `/archive/code/config/$STUDY_management.sh` shows that we're extracting them to legacy format (i.e. not using the `--use-dcm2bids` flag) then it's probable that the bids dir for that study was manually populated. Reach out to an employee who may know more about this study if bids outputs are required or must be updated.
+
+- If `/archive/data/$STUDY/data/nii` is empty:
+
+  - This directory is needed to populate the 'QC' directory and the dashboard. We're gradually phasing it out, and at this point it should just consist of symlinks to the bids data (except for our much older studies which may not even have bids data).
+  - The symlinks in this directory are created by using the `/archive/code/config/$STUDY_settings.yml` 'ExportInfo' block to try to match a datman style ID + scan tag to each bids file.
+  - If the directory isn't populating or is missing files it's likely because the series description regex isn't matching the bids file or because a 'Bids' configuration block is needed to help correctly identify the file.
+
+  However! Because we're phasing this directory out entirely (slowly over time), it's probably better to just ask Dawn for help, instead of trying to figure it out yourself, if a simple regex update for the SeriesDescription field doesn't fix it for you.
 
 -----------------
 
@@ -121,17 +185,21 @@ Section under construction, nag me about it if you came here looking for help! -
 
 #### 2. Make sure the MRI ID field is correct.
 
-Often a small typo in this field, or the omission of one of the ID subfields, can prevent the REDCap record from being correctly matched to our archive. If you want to be certain that the ID format is correct you can use datman's `scanid.parse` module. This is how all of our nightly scripts and the dashboard read these IDs, so if the ID can be read without raising an exception you can be certain that it is formatted correctly.
+Often a small typo in this field, or the omission of one of the ID subfields, can prevent the REDCap record from being correctly matched to our archive. If you want to be certain that the ID format is correct you can use datman's `validate_subject_id` function. This is how all of our nightly scripts and the dashboard read these IDs, so if the ID can be read without raising an exception you can be certain that it is formatted correctly.
 
 ```bash
+# These lines run in the terminal.
 # First load our code environment and start ipython
 module load lab-code
 ipython
 ```
 ```python
-# Do these lines in ipython
-import datman.scanid
-ident = datman.scanid.parse("YOUR_ID_HERE") # If this line doesnt raise an error, the ID is well formatted.
+# These lines run in ipython
+import datman.config
+import datman.utils
+config = datman.config.config(study="THE_STUDY_ID_HERE")
+# If this line doesnt raise an error, the ID is well formatted.
+datman.utils.validate_subject_id("YOUR_ID_HERE", config)
 ```
 
 #### 3. (Data Entry Trigger only) Rule out temporary network issues.
@@ -142,7 +210,7 @@ Studies that use REDCap's data entry trigger feature to import records may occas
 
 Studies that use the datman script `dm_redcap_scan_completed.py` instead of (or in addition to) the Data Entry Trigger will only pull in records when it runs as part of the nightly pipelines. If the record was entered on REDCap on the same day you're looking for it there may not actually be an issue, and you can run the script manually to pull it down early.
 
-If at least one day has passed, you can likely find error messages in the nightly run log for this script. To help with debugging and get more debug info you may want to manually run the script.
+If at least one day has passed, you can likely find error messages in the nightly run log for this script. To help with debugging and get more info you may want to manually run the script.
 
 ```bash
 module load lab-code
@@ -153,7 +221,7 @@ dm_redcap_scan_completed.py STUDYNAME
 #### 5. Make sure REDCap configuration for the study is correct.
 **DET only:** Make sure the data entry trigger is enabled and pointing to the correct server. Navigate to the project, and then select the 'Project Setup' tab. Scroll down to the 'Additional Customizations' button. When you click the button, somewhere in the list of features you should find a checkbox for 'Data Entry Trigger'. Make sure it's checked, and make sure the URL is `http://172.26.216.66/redcap`. If everything is configured right, you can click the test button to make sure redcap can reach the server. If it reports an error, the network configuration may have changed and you should contact Dawn for help! *Note:* The data entry trigger may only be configured for redcap records on CAMH's server.
 
-**Both:** The REDCap configuration for each study can be found in the study config file (e.g. `/archive/code/config/MYE01_settings.yml`). To learn more about each field see the [configuration documentation here](http://imaging-genetics.camh.ca/datman/datman_conf.html#redcap)
+**Both:** The REDCap configuration for each study can be found in the study config file (e.g. `/archive/code/config/$STUDY_settings.yml`). To learn more about each field see the [configuration documentation here](http://imaging-genetics.camh.ca/datman/datman_conf.html#redcap)
 
 Make sure that the values in the settings file match the actual redcap form field names.
 
@@ -201,4 +269,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
 | Dawn | October 7th, 2024 | Reviewed and updated some of contents. |
 | Dawn | November 14th, 2024 | Added content to 'Header Differences' section. |
+| Dawn | September 25, 2026 | Updated contents and some URL references. |
 <!-- sign-off-sheet:end -->
