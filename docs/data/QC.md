@@ -123,14 +123,14 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 
 ### Timepoint view
 
-- Delete all: Remove everything associated with this timepoint from the archive and/or the dashboard database. Original raw data from the scanner will never be deleted so this is fairly safe to use. The most that stands to be lost permanently is records of already completed QC and user comments. This button is mainly useful for removing sessions that have slipped through with a bad subject ID. [See here for more info.](#misnamed-scans)
+- Delete all: Remove everything associated with this timepoint from the archive and/or the dashboard database. The original data from the scanner will never be deleted so this is fairly safe to use. The most that stands to be lost permanently is records of already completed QC and user comments. This button is mainly useful for removing sessions that have slipped through with a bad subject ID. [See here for more info.](#misnamed-scans)
 - Flag Incidental Finding: Notify staff members about an incidental finding.
 - Create issue: Open a GitHub issue to notify staff members about missing data or other QC related issues.
 - Comments: Used to hold notes during the QC process or make a record of anything unusual. No notification is sent to staff, it's only for personal record keeping.
 
 ![](../_images/qc_dash/timepoint_view.png)
 
-- Delete session (trash can icon): Delete a session from the archive and/or dashboard database. This will not delete user comments or other sessions associated with the timepoint.
+- Delete session (the trash can icon beside the session ID): Delete a single session from the archive and/or dashboard database. This will not delete user comments or other sessions associated with the timepoint.
 - KCNI ID: Session named based on KCNI naming convention (used on XNAT by our lab).
 - Task Files: Files related to functional scans where tasks are recorded.
 - REDCap Comment: RA comments about the in scanner behavior of the participant.
@@ -139,13 +139,14 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 
 ![](../_images/qc_dash/session_view.png)
 
+Then we have the session overview table:
 - Series: Scan Number
-- Tag: Type of Scan
-- Length: Corresponds to time or frames, these values are consistent within each project
+- Tag: The Datman-style tag that indicates scan type
+- Length: Corresponds to time or frames, these values should be consistent within each project
   - Functional Scans: Typically longer lengths
   - Anatomical scans: No length applicable
   - DTI: often ~103-104
-- Description: The series description taken from XNAT. Click on this to access the scan view.
+- Description: The series description taken from XNAT. Click on this to view the entire scan in the papaya viewer.
 - Status: New, signed off, flagged or blacklisted. Signed off == Everything looks good. Flagged == Something is unusual but the data can probably still be used. Blacklisted == Scan is unusable. Blacklisting indicates an artifact is drastically affecting the scan.
 - Warnings: Indicates scan issues like repeated scan or header mismatch
 - Comment: Displays the comment entered when a scan is blacklisted or flagged
@@ -153,8 +154,8 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 
 ![](../_images/qc_dash/scan_table.png)
 
-- Reached by clicking the series description of a scan in the scan table
-- Header differences will display here (if any exist)
+Below is the 'scan' view. It's reached by clicking the series description of a scan in the session overview table.
+- Header differences will display here, if gold standards have been configured for the study + site and any differences have been found.
 - The papaya viewer allows you to scroll through the scan to look for artifacts
 
 ![](../_images/qc_dash/scan_view.png)
@@ -162,7 +163,7 @@ Most QC will be done from the 'timepoint' page. Select a session by either click
 ---
 
 ## Visual Inspection of Scans
-After viewing the tech notes (if they're available), you should scroll through the images on the main session page. Below is a list of things to look out for with different types of scans. This list is only for the raw data. For QC of pipeline outputs [see this page instead.](../../resources/Pipeline-QC-guide.md)
+After viewing the tech notes (if they're available), you should scroll through the images on the main session page. Below is a list of things to look out for with different types of scans. This list is only for the raw data. For QC of pipeline outputs [see this page instead.](https://imaging-genetics.camh.ca/documentation/#/resources/Pipeline-QC-guide)
 
 T1 and T2 scans:
   - T1 and T2 should be inverted in color
@@ -205,4 +206,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | Name | Date | Notes |
 |------|------|-------|
 | TIGRLab | April 24th, 2023 | Did annual review together. Looks fine. |
+| Dawn | September 25, 2026 | Minor edits, fixed a broken link. |
 <!-- sign-off-sheet:end -->
