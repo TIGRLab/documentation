@@ -3,97 +3,212 @@
   - Those who want to learn more about how we set up our studies
 
 ## Setup process
-Brace yourself, this will be a lot. We need to make this easier in the future... :( Some steps can be returned to later or done out of order, but for a fully set up study everything in this list should be checked off!
+This page describes the current process for correctly setting up a new study to be managed by [Datman](https://github.com/TIGRLab/datman) and the [QC dashboard](https://github.com/TIGRLab/datman-dashboard). Be sure to follow all steps carefully, missing a step can cause many issues that will take more time to fix later.
 
-**NOTE:** make sure the study folder and everything in it is owned by clevis and the group kimel_data!
+**NOTE:** Everything in the archive should be owned by user clevis and the group kimel_data! Don't run commands in the archive as yourself or as root, please, it can break many things.
 
-## 1. Add project folders and a README file
-  - Add a folder in `/archive/data/` with the acronym/short form name of the new study
-  - Inside this new folder create the following subfolders: `bin`, `data`, `docs`, `logs`, `metadata`, `pipelines`, and `qc`
-  - Add a `README.md` file directly inside the study folder describing the study, who the PI is and any other relevant / useful info. This README is the same one that is editable from the dashboard and can later be updated from there as well once your study has been added.
+### 1. Switch to user clevis.
+Clevis is the user account we use to manage the archive and run our automated pipelines.
+  ```bash
+    sudo su clevis
+  ```
 
-## 2. Fill in the 'docs' folder
-  - Get study protocols for each site, make a `protocols` folder and add them there.
-  - If you have contact info for other sites, make a `contacts` folder and add a file for each site following a `contacts-$SITE-$DATE` naming convention. The date should reflect the most recent update of the info.
-  - If you have any REB documentation for any study sites make a folder that follows the naming convention `$SITE_REB` and add it there
-  - If you have any files documenting standard operating procedure for different sites add them to a folder named `SOPs`
+### 2. Make the project folder tree.
+The below commands will create the correct directory structure with correct permissions and ownership. Everything in the archive should be owned by user clevis and group kimel_data.
+   ```bash
+     # Set this to the new study's name.
+     STUDY=YOURPROJECT
 
-## 3. Set up XNAT
-  - If you haven't used XNAT before, find out how to do attend the training course, set up an account, and about our naming conventions [here](data/XNAT.md).
-  - Request a new project for your study following the instructions on the XNAT wiki.
+     # Make project folder and subfolders
+     mkdir -p /archive/data/${STUDY}/{bin,metadata,data,docs,pipelines,qc}
 
-## 4. (CAMH only) Update REDCap's scan completed survey
-   - Go to https://edc.camhx.ca/redcap/
-   - For the 'Scan Completed' survey add the new study to the options for study and add any research assistants to the list. If you don't have REDCap access to do this yet ask another staff member.
+     # Make sure everything is owned by user clevis and group kimel_data
+     chown -R clevis:kimel_data /archive/data/${STUDY}
 
-## 5. Add the expected files to the study's metadata folder
-  - Add a file named `blacklist.csv` with two _space or tab separated_ columns named 'series' and 'reason'. Many pipeline scripts try to read this file, and the dashboard may try to write to it on behalf of users, so it needs to exist even if nothing has been blacklisted yet.
-  - Add a 'scans.csv' file to hold name mappings for zip files that don't have the correct scan names in the 'PatientName' dicom field. This file should have the following _space or tab separated_ column headers (case sensitive!): source_name, target_name, PatientName, and StudyID.
-  - If you have any study design related files (e.g. event timing files), add a folder called 'design' and save them there for later reference.
-  - (only if REDCAP scan completed/ID sharing used) Add the redcap token in a file named 'redcap-token'. If the study has more than one redcap server to access (e.g. other sites have their own external server) each additional token can be added in its own file under whatever name you like, just be sure to provide the file name with the 'REDCAP_TOKEN' setting in each site's configuration ([see here](https://github.com/TIGRLab/datman/wiki/Study-Config#redcap-settings) for more info).
-  - (Only if SFTP server used) Add the FTP server password in a text file. For CAMH scans this is expected in a file named 'mrftppass.txt'. For TONI or any other site you can set whatever name you like but you must provide your file name in the project settings file using the 'MRFTPPASS' setting ([see here](https://github.com/TIGRLab/datman/wiki/Study-Config#unique-site-sftp-server))
+     # Set correct permissions on all folders
+     chmod 2775 -R /archive/data/${STUDY}
+   ```
 
-## 6. Create the project settings file
-  - To fill in this file you will need the following:
-    - A list of expected scan types for each site in the study
-    - Knowledge of what will be in the actual SeriesDescription fields for the dicoms received. That is, you will probably need at least one scan to have been completed already. Pro-tip: You can easily get info from your dicom headers with 'dcmdump' (its installed on all our workstations). For example:
-      ```shell
-           # Get the series description from a dicom in a series
-           dcmdump --search SeriesDescription $PATH_TO_A_DICOM
-      ```
-      If you omit the search option it will show you the whole header. Note that the search option is case sensitive (i.e. 'SeriesDescription' works but 'seriesdescription' does not).
-    - (CAMH/TONI only) an FTP username and password as well as the name of the folder(s) associated with the project on the MR FTP server.
-  - In `/archive/code/config` add a file named `$YOURSTUDY_settings.yml`
-  - For detailed info on filling this file [see here](https://github.com/TIGRLab/datman/wiki/Study-Config). See the example at the bottom of that page for a template (or copy one from another study) to make life easier.
+### 3. Create a README for the project.
+Each project should have a README.md file with details about the study (e.g. `/archive/data/$STUDY/README.md`). This file should contain a brief description of the dataset, who the PI is, contact info for RAs and any other important info that you'd want to convey to anyone using the dataset. This file is the same one that can be viewed and edited from inside the QC dashboard's study home page.
 
-## 7. Add your study's settings to the site config file
-  - Inside `/archive/code/config/tigrlab_config.yml` in the 'Projects' section add your study and its settings file name to the list.
-  - If you created any new scan tags (i.e. a tag that has never been used by any study before) add an entry for each new tag to the 'ExportSettings' section in `tigrlab_config.yml`
-  - Check that your file is being found and is free of syntax errors by loading it into datman:
-```shell
-# In your terminal
-module load /archive/code/packages.module
-source activate
-ipython
+### 4. Fill in the docs folder.
+In each study's docs directory (e.g. `/archive/data/${STUDY}/docs`) you should add important documentation, where available. For example:
 
-# Inside python
-import datman.config
-config = datman.config.config(study="YOURSTUDYNAMEHERE")
+  - Make a `protocols` sub-directory. Get a 'protocol' file from each scan site and store all files here.
+
+  - If you have contact info for other scan sites make a `contacts` folder. Add a file for each site, following a `contacts-$SITE-$DATE` format. The date should always reflect the most recent update of the info.
+
+  - If you have any REB documentation for any scan sites, make a `REB_docs` folder here. Make a subfolder named after each site for the site's documents and place the files there.
+
+  - If you have any files documenting standard operating procedure for different sites, make a subfolder named `SOPs` and place these files there.
+
+### 5. Set up XNAT for the project.
+The most up to date info about how to get an XNAT account or request a new XNAT project is available on the landing page of the [XNAT server here](https://xnat.camh.ca/), when you're not logged in.
+
+Note: The XNAT project, after it's made, must allow the `tigrlab` XNAT user read/write access for us to manage the data. If you don't have the ability to add a user to the project, contact Dawn with the XNAT project ID and she can add configure it.
+
+### 6. Set up a REDCap scan completed survey
+This usually only applies to studies that collect data at CAMH (though some external sites may have their own redcap servers and can take advantage too).
+
+Many of our studies have a redcap survey that gets filled in by the RA at data collection time. It details which series were successfully collected and if any issues happened during data collection. We can pull these in automatically to get advance notice to look out for data for a subject or easily recognize if something went wrong during scan data upload.
+
+The easiest way to 'turn on' data collection for studies collected at CAMH is to modify the existing 'scan completed' survey:
+  - Go to https://edc.camhx.ca/redcap/
+
+  - Log in as the tigrlab user (info in our passpack).
+
+  - Access the 'Scan Completed' survey and add the new study to the options for study and add any research assistants to the list. If you don't have REDCap access to do this yet ask another staff member.
+
+If a new survey is used (or a different server), just make sure to get an API read-only token for the tigrlab user and reach out to Dawn with the details so she can set up the automated data retrieval.
+
+### 7. Add required files to the metadata folder.
+- Create the 'scans.csv' file to hold name mappings when the dicom files don't contain a valid ID.
+  - Add a file named `${STUDY}_scans.csv` in `/archive/code/scan_csvs/`
+    - Add `source_name     target_name     PatientName     StudyID` to the file and save it.
+
+    - Commit the new file.
+        ```bash
+          # Change to user clevis
+          sudo su clevis
+          # Commit the file
+          git add ${STUDY}_scans.csv
+          git commit -m "Added initial scans.csv for study ${STUDY}"
+        ```
+
+    - Make a symlink named `scans.csv` in the study's metadata folder that points to this file.
+       ```bash
+         # Change to the study metadata folder
+         cd /archive/data/${STUDY}/metadata
+         # Make a relative symlink to the file you just made
+         ln -s ../../../code/scan_csvs/${STUDY}_scans.csv ./scans.csv
+       ```
+
+- If you have any study design related files (e.g. event timing files), add a folder called `design` and save them there for later reference.
+
+- (Only if REDCAP scan completed/ID sharing used) Add the redcap token in a file named `redcap-token`. If the study has more than one redcap server to access (e.g. other sites have their own external server) each additional token can be added in its own file under whatever name you like.
+
+- (Only if SFTP server used) Add the FTP server password in a file named `mrftppass.txt`. If the study has more than one sftp server to access (e.g. if other sites have their own external sftp) each additional password can be added in its own file under whatever name you like.
+
+- (Only if using multiple XNAT servers) By default the xnat credentials are retrieved from environment variables. However, if a study has scan sites that push/pull from other xnat servers you can create a file here with any name you like, with the username on the first line and the password on the second line.
+
+- Set correct permissions for credential files. The redcap token, sftp password, and xnat credential file(s) should only be readable by user clevis.
+
+```bash
+  # Make sure the files are owned by clevis. Make sure to run this on any additional credential files if you have more.
+  sudo chown clevis /archive/data/${STUDY}/metadata/{redcap-token,mrftppass.txt,xnat-credentials}
+  # Fix permissions
+  chmod 600 /archive/data/${STUDY}/metadata/{redcap-token,mrftppass.txt,xnat-credentials}
 ```
-If the last command ran without errors, you're set!
 
-## 8. Add the study to the dashboard
-  - **As clevis** run the dashboard's add_study_info.py script to add the new study's info to the dashboard (this reads the configuration files from the previous two steps)
+### 8. Create the Datman study config file.
+- You can refer to the [Datman documentation here](http://imaging-genetics.camh.ca/datman/datman_conf.html) for more info on this file and available settings. You can also consult our existing config files in `/archive/code/config`, all of which follow a `${STUDY}_settings.yml` naming convention, for examples. Our main config file is also in this folder and named `tigrlab_config.yaml`
 
-    ```shell
-     module load /archive/code/packages.module
-     source activate
-     add_study_info.py
+- There's a template settings file you can copy at `/archive/code/datman/assets/config_templates/study_config.yml`, or you can copy and modify the settings file from another study likely to be similar to yours.
+
+- To fill in this settings file you need:
+
+  - A list of expected scan types for each site in the study.
+
+  - Knowledge of what will be in the actual SeriesDescription fields for the dicoms received. That is, you will probably need at least one scan to have been completed already. You can view the series descriptions on XNAT but you can also easily get info from your dicom headers with 'dcmdump' (its installed on all our workstations). For example:
+    ```bash
+        # Get the series description from a dicom in a series
+        dcmdump --search SeriesDescription $PATH_TO_A_DICOM
     ```
-  - Confirm that it read the config files by visiting srv-dashboard.camhres.ca. If the new study is in the list on the main page your settings have likely been correctly read. To be 100% certain that _everything_ is set up correctly, though, check back after the nightly pipelines have run at least once and make sure the study's scans have been added correctly.
-  - For everyone who will be QCing this study set up their study access:
-    1. For those who don't have github accounts, get them to make one.
-    2. Make sure the github accounts for every QCer have been added as members of TIGRLab on github (they need this to add issues)
-    3. Have users attempt to log in to srv-dashboard.camhres.ca if they've never used the dashboard before. Every user has to try to access the dashboard at least once before they can be granted access to any studies.
-    4. Find each person in the list on ['admin/users' page](http://srv-dashboard.camhres.ca/users) and update their permissions to let them access the new study. **NOTE:** QCers will **not** need admin access or PHI access.
-    5. New QCers should be scheduled for QC training with our lab!
+  If you omit the search option it will show you the whole header. Note that the search option is case sensitive (i.e. 'SeriesDescription' works but 'seriesdescription' does not).
 
-## 9. Set up the run script(s)
-  - Add a script named `$YOURSTUDY_management.sh` to `/archive/code/config/` to turn on datman's core data management scripts ([see here](/data/Archive-Pipelines?id=management) for more info on each step). Copy another study's script to make your life easier :)
-  - NOTE: If your study has data shared from another study (i.e. scan sessions shared across studies under multiple names) you'll need to make sure the 'dm_link_shared_ids.py' script is in your run script, and have set up redcap (step 4) for the study for links to the data to be made.
-  - (Optional) Add a `$YOURSTUDY_analysis.sh` script to `/archive/code/config` to make use of the minimally preprocessed pipelines. [See here](/data/Archive-Pipelines?id=analysis) for more info on the scripts available.
-  - Make sure the management and/or analysis scripts are executable!
-  - Make a link in the study's bin folder named `run_data_kimel.sh` that points to the management script in `/archive/code/config/`. If you also have an 'analysis' script, make a _relative_ link (so the link doesnt break on the SCC) named `run_pipelines_scc.sh` pointing to your script.
-  - Get your management script (and/or analysis script) to run nightly by updating `/archive/code/bin/run.sh` (or for analysis: `/archive/code/bin/runall_pipelines_scc.sh`). **NOTE:** make sure to add the new study both to the list of variables at the beginning of the script and also the list in 'all_projects' that appears right after.
+   - Add the new study's project settings file to the `/archive/code/config` directory with the others. Ensure it follows our naming convention (``$STUDY_settings.yml``).
 
-## 10. Set up QC Gold Standards
-After the nightly pipelines have run once and you have some data you can set up gold standards for each site in your study. These are used by dm_qc_report.py to detect changes in the scan parameters from the headers. Currently, our gold standards files are just copied from the `data/dcm` folder. We copy one dicom per series from the first good scan that has correct parameters from each site. These should be added to a `standards` folder inside the study's `metadata` folder.
+### 9. Add your new study's settings file to the Datman main config file.
+- Inside `/archive/code/config/tigrlab_config.yaml`, in the 'Projects' section, add your study and its settings file name to the list or Datman won't recognize it.
 
-After setting up a new study, be sure to check back a few days in a row to make sure there are no errors. All study run script logs will be found in the logs at `/archive/logs`. The management script logs are named like `YYYY-MM-DD-run.log` and analysis script logs are named like `YYYY-MM-DD-run_scc.log`
+- If you created any brand new scan tags (i.e. a tag that has never been used by any study before) add an entry for each new tag to the 'ExportSettings' section in `tigrlab_config.yaml`
 
-## Common Problems
-### The PatientName field for a study's scans are not correctly set (i.e. not the datman ID)
-If it's just the occasional wrongly set PatientName field you just have to manually add an entry to `metadata/scans.csv`. Otherwise:
-  - Check if the site you receive these scans from has a complete mapping of scan zip files to subject IDs. If so, move the contents of this list into `metadata/scans.csv`
-  - If there is some sort of pattern to the misnaming, or enough information for you to derive the correct name, use `datman/scan_list.py` to create a script that will automatically update `metadata/scans.csv`. This script would usually go in a bin folder inside the study and would be added to the study's management script right before the dm_link.py step (which reads scans.csv) runs. See `/archive/data/NEUR/bin/generate_scan_list.py` or `/archive/data/SPINS/bin/generate_scan_list.py` for examples.
-  - If neither of the above applies, manually add all your scans to `metadata/scans.csv` as they come in and cry :(
+- Check that your file is being found and is free of syntax errors by loading the config in python:
+    ```bash
+      # These commands must be done in the terminal
+      module load lab-code
+      ipython
+    ```
+    ```python
+      # These commands are done in ipython after you've run the above commands.
+      # Import Datman's config manager package
+      import datman.config
+      # Attempt to load your new study's configuration into Datman
+      config = datman.config.config(study="YOURSTUDYNAMEHERE")
+    ```
+
+  If the last command ran without errors, then your new study's configuration is accessible to Datman and free of syntax errors!
+
+### 10. Create the dcm2bids configuration file.
+To generate bids format outputs you'll need to create a dcm2bids configuration file. [See this page](https://github.com/TIGRLab/admin/wiki/Exporting-to-BIDs) for more info. As per that page, you should ideally set up XNAT to handle the output generation, unless you have a specific reason to do it locally, so do that also.
+
+### 11. Set up the study's nightly run script.
+- Add a script named `${STUDY}_management.sh` to `/archive/code/config/` to define all the Datman steps (and other scripts) that will run on the data. [See here](http://imaging-genetics.camh.ca/datman/script_overview.html) for more info on what each script does and for more information on configuration requirements. Copy another study's script to make your life easier :)
+
+- Most of the folders in the study's `data` folder get populated by `dm_xnat_extract.py` and the `qc` folder gets populated by `dm_qc_report.py`. These scripts will also populate the dashboard database. The `pipelines` folder is typically populated by non-datman scripts that are manually run ad hoc or on a quarterly basis.
+
+- Make sure the management script is executable. `chmod 754 /archive/code/config/${STUDY}_management.sh`
+
+- Make a link for the script in the study's bin folder. This link should be named `run_data_kimel.sh`
+  ```bash
+    cd /archive/data/${STUDY}/bin
+    # Make it a relative link so it doesn't break if run from the SCC!
+    ln -s ../../../code/config/${STUDY}_management.sh run_data_kimel.sh
+  ```
+
+- Turn the script on in `/archive/code/bin/run.sh`. This is the launcher script that runs every active study's pipeline nightly. To turn on a new study just add it to the list of projects near the beginning.
+
+- Note that steps that interact with XNAT have been separated out, because the server had been causing enormous delay to the nightly pipelines. Calls to ``dm_xnat_upload.py`` now go in ``/archive/code/bin/run_upload.sh`` and calls to ``dm_xnat_extract.py`` go in ``/archive/code/bin/run_extract.sh`` instead of being listed in each study's management script. In both instances, now, you just add the study ID to the appropriate study list in the file or add a new section if you need to run with different settings.
+
+### 12. Commit your configuration changes and push them to GitHub.
+  ```bash
+    # This should be done as clevis!
+    git add ${STUDY}_settings.yml ${STUDY}_management.sh tigrlab_config.yaml
+    git commit -m "Adding settings for ${STUDY}"
+    git push origin
+  ```
+
+### 13. Add the new study's configuration to the QC dashboard.
+The QC dashboard needs to re-read the settings whenever changes are made to metadata or tags. It will create the study in the database and populate all the necessary details if you run the below code:
+
+```bash
+  # Make sure you're clevis when you run this. i.e. `sudo su clevis` first
+
+  # Load our module
+  module load lab-code
+
+  # If you've added any new tags to tigrlab_config.yaml, you should run parse_config.py
+  # without specifying a study to ensure the global configuration settings update too.
+  parse_config.py
+
+  # Otherwise, you can run it just for the new study.
+  parse_config.py ${STUDY}
+```
+
+### 14. Give all the necessary RAs access to the project on the dashboard.
+- Get each RA to make a GitHub account if they don't already have one.
+
+- Once they have a GitHub account they should go to srv-dashboard.camhres.ca and request an account
+
+- Once they've made the request, their access has to be approved by a dashboard admin (every lab employee should be an admin). Just approve their request on the 'admin' page and 'add' any studies (or study-sites) they should have access to, to their account. Be sure to give them the correct access (i.e. people doing QC should be marked as such on the admin management page)
+
+- Also, invite their github account to our organization, so they can add and view github issues and our private documentation if needed.
+
+### 15. Arrange a QC training session for RAs who are new to doing scan QC.
+If they've never done QC before we should meet with them to ensure they don't accidentally miss important errors that must be corrected. Contact Erin for more info about who should train them and how.
+
+### 16. Set up QC gold standards
+We use gold standards (basically json sidecars for scans that match the protocol for each series and scan site) to automated checks to catch when scanner settings may be changing in ways we don't want. To set them up, [see here](https://imaging-genetics.camh.ca/documentation/#/data/QC-staff-guide?id=gold-standards)
+
+### 17. Finally, wait a day or two and make sure all looks good.
+A few days after you've finished setting up all the nightly run scripts, gold standards, etc. Check back in and make sure it looks like everything is extracting where it's supposed to, with the tags you expect, the dashboard is populating, and no major errors are cropping up in the logs. If all looks well, then you're done!
+
+<!-- sign-off-sheet:start -->
+<!-- sign-off-cadence:1 year -->
+This shows the last time this page was reviewed to ensure it wasnt out of date.
+
+| Name | Date | Notes |
+|------|------|-------|
+| Dawn | September 25, 2026 | Massively updated contents. Reflects what we actually do now. |
+<!-- sign-off-sheet:end -->
