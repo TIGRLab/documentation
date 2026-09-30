@@ -8,7 +8,7 @@ We use gold standards to make sure the MRI scan parameters aren't changing over 
 
 - First, inside the study's metdata folder, make a 'standards' folder if one doesn't already exist.
 - Next, for each scan site in the study, find one series per tag with correct header parameters. So if you have two scan sites (CMH1 and CMH2) and two tags (T1 and T2) you should find four gold standards (CMH1-T1, CMH1-T2, CMH2-T1, CMH2-T2).
-- Copy the .json file for each series you identified in the previous step into the `$STUDY/metadata/standards` folder.
+- Copy the .json file for each series you identified in the previous step into the `$STUDY/metadata/standards` folder. If a series has bvec/bval files copy those too.
 - Switch to clevis (`sudo su clevis`), load the lab-code module (`module load lab-code`), and run `dm_update_standards.py $STUDY`. This will update the database with the newest gold standards.
 - As long as there were no errors, you're good to go! If there were errors, reach out to Dawn for help.
 
