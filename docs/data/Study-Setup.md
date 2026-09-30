@@ -101,7 +101,10 @@ If a new survey is used (or a different server), just make sure to get an API re
   chmod 600 /archive/data/${STUDY}/metadata/{redcap-token,mrftppass.txt,xnat-credentials}
 ```
 
-### 8. Create the Datman study config file.
+### 8. Create the dcm2bids configuration file.
+To generate bids format outputs you'll need to create a dcm2bids configuration file. [See this page](https://github.com/TIGRLab/admin/wiki/Exporting-to-BIDs) for more info. As per that page, you should ideally set up XNAT to handle the output generation, unless you have a specific reason to do it locally, so do that also.
+
+### 9. Create the Datman study config file.
 - You can refer to the [Datman documentation here](http://imaging-genetics.camh.ca/datman/datman_conf.html) for more info on this file and available settings. You can also consult our existing config files in `/archive/code/config`, all of which follow a `${STUDY}_settings.yml` naming convention, for examples. Our main config file is also in this folder and named `tigrlab_config.yaml`
 
 - There's a template settings file you can copy at `/archive/code/datman/assets/config_templates/study_config.yml`, or you can copy and modify the settings file from another study likely to be similar to yours.
@@ -119,7 +122,7 @@ If a new survey is used (or a different server), just make sure to get an API re
 
    - Add the new study's project settings file to the `/archive/code/config` directory with the others. Ensure it follows our naming convention (``$STUDY_settings.yml``).
 
-### 9. Add your new study's settings file to the Datman main config file.
+### 10. Add your new study's settings file to the Datman main config file.
 - Inside `/archive/code/config/tigrlab_config.yaml`, in the 'Projects' section, add your study and its settings file name to the list or Datman won't recognize it.
 
 - If you created any brand new scan tags (i.e. a tag that has never been used by any study before) add an entry for each new tag to the 'ExportSettings' section in `tigrlab_config.yaml`
@@ -139,9 +142,6 @@ If a new survey is used (or a different server), just make sure to get an API re
     ```
 
   If the last command ran without errors, then your new study's configuration is accessible to Datman and free of syntax errors!
-
-### 10. Create the dcm2bids configuration file.
-To generate bids format outputs you'll need to create a dcm2bids configuration file. [See this page](https://github.com/TIGRLab/admin/wiki/Exporting-to-BIDs) for more info. As per that page, you should ideally set up XNAT to handle the output generation, unless you have a specific reason to do it locally, so do that also.
 
 ### 11. Set up the study's nightly run script.
 - Add a script named `${STUDY}_management.sh` to `/archive/code/config/` to define all the Datman steps (and other scripts) that will run on the data. [See here](http://imaging-genetics.camh.ca/datman/script_overview.html) for more info on what each script does and for more information on configuration requirements. Copy another study's script to make your life easier :)
@@ -166,7 +166,6 @@ To generate bids format outputs you'll need to create a dcm2bids configuration f
     # This should be done as clevis!
     git add ${STUDY}_settings.yml ${STUDY}_management.sh tigrlab_config.yaml
     git commit -m "Adding settings for ${STUDY}"
-    git push origin
   ```
 
 ### 13. Add the new study's configuration to the QC dashboard.
