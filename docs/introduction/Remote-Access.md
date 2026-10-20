@@ -21,7 +21,7 @@ You can request SciNet access by following [these instructions](https://github.c
 
 Once you have all the required accounts, you can set up the ssh tunnel by following these instructions:
 
-  - [Mac/Linux](https://github.com/TIGRLab/admin/wiki/SciNet)
+  - [Mac/Linux](https://github.com/TIGRLab/admin/wiki/Remote-Access-via-SSH-Tunnel)
   - [Windows](https://github.com/TIGRLab/admin/wiki/Windows-MobaXTerm)
 
 Note that you must be logged in to github to view either of those links.
@@ -111,4 +111,5 @@ This shows the last time this page was reviewed to ensure it wasnt out of date.
 | Dawn | Oct 29, 2025 | Updated sections, added SCC tunnel instructions. |
 | Dawn | Apr 21, 2026 | Reviewed for accuracy, minor tweaks. |
 | Dawn | July 16, 2026 | Added info about scc ondemand portal. |
+| Dawn | Oct 20, 2026 | Updated link for ssh tunnel instructions. |
 <!-- sign-off-sheet:end -->
